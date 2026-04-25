@@ -1,4 +1,4 @@
-export type Category = "stotra" | "aarti" | "prarthana" | "mantra";
+export type Category = "stotra" | "aarti" | "prarthana" | "mantra" | "pujan-vidhi";
 
 export interface Verse {
   dev: string;

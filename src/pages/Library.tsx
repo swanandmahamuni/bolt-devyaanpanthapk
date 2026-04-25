@@ -12,6 +12,7 @@ const cats = [
   { id: "aarti", label: "Aarti" },
   { id: "prarthana", label: "Prarthana" },
   { id: "mantra", label: "Mantra" },
+  { id: "pujan-vidhi", label: "Pujan Vidhi" },
 ];
 
 const Library = () => {
