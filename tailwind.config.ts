@@ -63,6 +63,21 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backgroundImage: {
+        "gradient-divine": "var(--gradient-divine)",
+        "gradient-banner": "var(--gradient-banner)",
+        "gradient-gold": "var(--gradient-gold)",
+      },
+      boxShadow: {
+        soft: "var(--shadow-soft)",
+        glow: "var(--shadow-glow)",
+        card: "var(--shadow-card)",
+      },
+      fontFamily: {
+        devanagari: ['"Tiro Devanagari Hindi"', '"Noto Serif Devanagari"', "serif"],
+        display: ['"Cormorant Garamond"', "serif"],
+        sans: ['"Inter"', "system-ui", "sans-serif"],
+      },
       keyframes: {
         "accordion-down": {
           from: {
