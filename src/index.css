@@ -2,104 +2,239 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Divya Path — Devotional Design System
+   All colors HSL. Saffron · gold · ivory · midnight indigo.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Surfaces */
+    --background: 38 60% 96%;          /* warm ivory */
+    --foreground: 20 35% 15%;          /* deep maroon-brown */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 40 70% 98%;
+    --card-foreground: 20 35% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 40 70% 98%;
+    --popover-foreground: 20 35% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Brand */
+    --primary: 25 92% 52%;             /* saffron */
+    --primary-foreground: 40 80% 98%;
+    --primary-glow: 35 100% 62%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 38 55% 88%;           /* sandstone */
+    --secondary-foreground: 20 40% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 38 40% 92%;
+    --muted-foreground: 25 20% 38%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 85% 55%;              /* gold */
+    --accent-foreground: 20 40% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 80% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 40% 82%;
+    --input: 35 40% 82%;
+    --ring: 25 92% 52%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Devotional gradients */
+    --gradient-divine: radial-gradient(ellipse at top, hsl(45 100% 75% / 0.55), transparent 60%),
+                       radial-gradient(ellipse at bottom, hsl(25 90% 60% / 0.18), transparent 70%);
+    --gradient-banner: linear-gradient(135deg, hsl(25 92% 52%), hsl(15 80% 45%) 60%, hsl(350 70% 40%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 95% 60%), hsl(35 90% 50%));
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Shadows */
+    --shadow-soft: 0 10px 30px -10px hsl(20 50% 25% / 0.18);
+    --shadow-glow: 0 0 40px hsl(35 100% 60% / 0.45);
+    --shadow-card: 0 4px 20px -8px hsl(20 50% 25% / 0.15), 0 1px 3px hsl(20 50% 25% / 0.06);
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Reader parchment */
+    --parchment: 42 75% 95%;
+    --parchment-foreground: 22 50% 18%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 240 35% 8%;          /* midnight indigo */
+    --foreground: 40 60% 92%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 30% 12%;
+    --card-foreground: 40 60% 92%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 30% 12%;
+    --popover-foreground: 40 60% 92%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 35 95% 60%;
+    --primary-foreground: 240 35% 8%;
+    --primary-glow: 45 100% 65%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 240 25% 18%;
+    --secondary-foreground: 40 60% 92%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 25% 16%;
+    --muted-foreground: 40 25% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 45 90% 60%;
+    --accent-foreground: 240 35% 8%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 40 60% 92%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 240 25% 22%;
+    --input: 240 25% 22%;
+    --ring: 35 95% 60%;
+
+    --gradient-divine: radial-gradient(ellipse at top, hsl(45 100% 60% / 0.25), transparent 60%),
+                       radial-gradient(ellipse at bottom, hsl(280 60% 40% / 0.25), transparent 70%);
+    --gradient-banner: linear-gradient(135deg, hsl(25 90% 45%), hsl(350 70% 35%) 60%, hsl(280 60% 30%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 90% 55%), hsl(35 85% 45%));
+
+    --shadow-soft: 0 10px 30px -10px hsl(0 0% 0% / 0.6);
+    --shadow-glow: 0 0 50px hsl(45 100% 55% / 0.35);
+    --shadow-card: 0 4px 20px -8px hsl(0 0% 0% / 0.5);
+
+    --parchment: 240 28% 14%;
+    --parchment-foreground: 40 55% 90%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
+  * { @apply border-border; }
+  html { -webkit-tap-highlight-color: transparent; }
   body {
     @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, sans-serif;
+    overscroll-behavior-y: none;
   }
+  h1, h2, h3, h4 { font-family: "Cormorant Garamond", "Inter", serif; letter-spacing: -0.01em; }
+  .font-devanagari { font-family: "Tiro Devanagari Hindi", "Noto Serif Devanagari", serif; }
+  .font-devanagari-strong { font-family: "Noto Serif Devanagari", serif; font-weight: 600; }
+  .font-display { font-family: "Cormorant Garamond", serif; }
+}
+
+@layer components {
+  .parchment {
+    background: hsl(var(--parchment));
+    color: hsl(var(--parchment-foreground));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card);
+    border-radius: calc(var(--radius) + 2px);
+  }
+  .glass {
+    background: hsl(var(--card) / 0.65);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid hsl(var(--border) / 0.7);
+  }
+  .text-shadow-soft { text-shadow: 0 1px 2px hsl(20 50% 10% / 0.25); }
+}
+
+/* Divine animated background */
+.divine-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: hsl(var(--background));
+  pointer-events: none;
+}
+.divine-bg::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background: var(--gradient-divine);
+}
+.divine-rays {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  width: 160vmax;
+  height: 160vmax;
+  transform: translateX(-50%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    hsl(45 100% 70% / 0.18) 6deg,
+    transparent 12deg,
+    transparent 24deg,
+    hsl(35 100% 65% / 0.14) 30deg,
+    transparent 36deg,
+    transparent 60deg,
+    hsl(45 100% 70% / 0.16) 66deg,
+    transparent 72deg,
+    transparent 96deg,
+    hsl(35 100% 65% / 0.12) 102deg,
+    transparent 108deg,
+    transparent 144deg,
+    hsl(45 100% 70% / 0.18) 150deg,
+    transparent 156deg,
+    transparent 360deg
+  );
+  filter: blur(2px);
+  animation: ray-spin 90s linear infinite;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+.dark .divine-rays { opacity: 0.4; }
+
+.divine-mandala {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(120vmin, 900px);
+  height: min(120vmin, 900px);
+  transform: translate(-50%, -50%);
+  opacity: 0.06;
+  background-image: radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(circle, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
+  animation: mandala-spin 240s linear infinite;
+}
+.dark .divine-mandala { opacity: 0.08; }
+
+.divine-particles {
+  position: absolute; inset: 0;
+}
+.divine-particles span {
+  position: absolute;
+  bottom: -10vh;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(45 100% 70%), hsl(35 95% 55% / 0));
+  filter: blur(0.5px);
+  animation: float-up linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes ray-spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg); }
+}
+@keyframes mandala-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes float-up {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.9; }
+  100% { transform: translateY(-115vh) translateX(20px) scale(0.6); opacity: 0; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(45 100% 60% / 0.5), var(--shadow-card); }
+  50%      { box-shadow: 0 0 0 18px hsl(45 100% 60% / 0), var(--shadow-card); }
+}
+.animate-pulse-glow { animation: pulse-glow 1.4s ease-out; }
+
+@keyframes tap-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+.animate-tap { animation: tap-bounce 0.25s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .divine-rays, .divine-mandala, .divine-particles span { animation: none; }
 }
