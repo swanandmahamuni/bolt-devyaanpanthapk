@@ -393,3 +393,89 @@
     0 12px 22px -6px hsl(20 60% 20% / 0.55),
     0 0 32px hsl(45 100% 60% / 0.55);
 }
+
+/* ============ Rudraksha bead (mini jaap counter) ============ */
+.rudraksha {
+  background:
+    radial-gradient(circle at 32% 30%, hsl(28 70% 38%) 0%, hsl(20 65% 22%) 35%, hsl(15 70% 12%) 75%);
+  border: 1px solid hsl(20 60% 10% / 0.85);
+  box-shadow:
+    inset 0 2px 3px hsl(35 80% 60% / 0.55),
+    inset 0 -3px 6px hsl(0 0% 0% / 0.6),
+    inset 4px 0 6px hsl(0 0% 0% / 0.35),
+    inset -4px 0 6px hsl(0 0% 0% / 0.35);
+  color: hsl(45 95% 85%);
+  text-shadow: 0 1px 1px hsl(0 0% 0% / 0.65);
+  position: relative;
+  overflow: hidden;
+  animation: rudraksha-spin 14s linear infinite;
+}
+/* Rudraksha grooves — radial cracks giving the seed texture */
+.rudraksha::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      hsl(0 0% 0% / 0.55) 0deg 2deg,
+      transparent 2deg 18deg
+    );
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.rudraksha::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, hsl(45 90% 70% / 0.45), transparent 60%);
+  pointer-events: none;
+}
+.rudraksha__count {
+  position: relative;
+  z-index: 2;
+  /* counter-rotate so number stays upright while bead spins */
+  animation: rudraksha-spin-rev 14s linear infinite;
+}
+@keyframes rudraksha-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes rudraksha-spin-rev {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rudraksha, .rudraksha__count { animation: none; }
+}
+
+/* ============ Background style variants ============ */
+/* Lotus dawn — soft pinks & gold */
+.divine-bg--lotus { background: hsl(36 70% 95%); }
+.divine-bg--lotus .divine-nebula {
+  background:
+    radial-gradient(45% 35% at 28% 30%, hsl(340 85% 75% / 0.32), transparent 70%),
+    radial-gradient(40% 30% at 75% 25%, hsl(20 95% 70% / 0.30), transparent 70%),
+    radial-gradient(50% 40% at 50% 85%, hsl(45 95% 70% / 0.34), transparent 70%);
+}
+/* Temple twilight — deep indigo & saffron */
+.divine-bg--temple { background: hsl(255 35% 12%); color: hsl(40 60% 92%); }
+.divine-bg--temple .divine-nebula {
+  background:
+    radial-gradient(40% 30% at 25% 30%, hsl(265 80% 50% / 0.45), transparent 70%),
+    radial-gradient(40% 30% at 80% 25%, hsl(25 95% 55% / 0.38), transparent 70%),
+    radial-gradient(50% 40% at 50% 85%, hsl(15 90% 50% / 0.40), transparent 70%);
+  opacity: 0.85;
+}
+/* Cosmic OM — teal, violet & gold */
+.divine-bg--cosmos { background: hsl(225 40% 10%); color: hsl(40 60% 92%); }
+.divine-bg--cosmos .divine-nebula {
+  background:
+    radial-gradient(40% 30% at 22% 28%, hsl(190 85% 55% / 0.32), transparent 70%),
+    radial-gradient(35% 28% at 80% 24%, hsl(280 85% 60% / 0.32), transparent 70%),
+    radial-gradient(50% 40% at 55% 80%, hsl(45 95% 60% / 0.32), transparent 70%);
+  opacity: 0.85;
+}
