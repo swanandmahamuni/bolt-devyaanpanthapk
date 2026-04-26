@@ -1,10 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BookMarked, Flame, Bell, Sparkles, Heart } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { vibrate } from "@/lib/chime";
-import { stotras } from "@/content/stotras";
 
 type Cat = {
   id: string;
@@ -32,17 +31,6 @@ export const CategoryArc = () => {
   const [active, setActive] = useState(0);
   const startX = useRef<number | null>(null);
   const moved = useRef(false);
-
-  const counts = useMemo(
-    () =>
-      CATEGORIES.reduce<Record<string, number>>((acc, c) => {
-        acc[c.id] = stotras.filter((s) => s.category === c.catKey).length;
-        return acc;
-      }, {}),
-    []
-  );
-
-  const activeCat = CATEGORIES[active];
 
   const rotate = (dir: 1 | -1) => {
     setActive((a) => (a + dir + CATEGORIES.length) % CATEGORIES.length);
@@ -82,30 +70,9 @@ export const CategoryArc = () => {
 
   return (
     <div className="relative">
-      {/* Active text on ancient page */}
-      <div className="relative mx-auto mb-6 max-w-[20rem]">
-        <div className="ancient-page relative px-6 py-7 text-center">
-          <div className="text-[10px] uppercase tracking-[0.3em] text-primary/70">
-            {counts[activeCat.id] ?? 0} texts
-          </div>
-          <div className="font-devanagari mt-1 text-3xl text-foreground/90 drop-shadow-[0_1px_0_hsl(45_80%_90%)]">
-            {activeCat.dev}
-          </div>
-          <div className="font-display mt-0.5 text-base text-muted-foreground">
-            {activeCat.label}
-          </div>
-          <button
-            onClick={() => nav(`/library?cat=${activeCat.catKey}`)}
-            className="mt-3 rounded-full bg-gradient-gold px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent-foreground shadow-soft active:scale-95"
-          >
-            Open
-          </button>
-        </div>
-      </div>
-
       {/* Arc of icons */}
       <div
-        className="relative mx-auto h-44 w-full touch-pan-y select-none"
+        className="relative mx-auto h-56 w-full touch-pan-y select-none"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -144,7 +111,7 @@ export const CategoryArc = () => {
               aria-label={c.label}
               aria-selected={isActive}
               className={cn(
-                "icon-3d absolute left-1/2 top-0 h-16 w-16 -translate-x-1/2 rounded-2xl",
+                "icon-3d absolute left-1/2 top-0 flex w-20 -translate-x-1/2 flex-col items-center gap-1.5",
                 "transition-all duration-300 ease-out"
               )}
               style={{
@@ -153,8 +120,16 @@ export const CategoryArc = () => {
                 zIndex: z,
               }}
             >
-              <span className="icon-3d__face grid h-full w-full place-items-center rounded-2xl">
+              <span className="icon-3d__face grid h-16 w-16 place-items-center rounded-2xl">
                 <Icon className="h-7 w-7" strokeWidth={1.6} />
+              </span>
+              <span
+                className={cn(
+                  "font-display text-[11px] font-semibold uppercase tracking-wider text-foreground/85",
+                  isActive && "text-primary"
+                )}
+              >
+                {c.label}
               </span>
             </button>
           );

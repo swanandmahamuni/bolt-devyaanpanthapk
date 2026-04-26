@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
-import { JaapBanner } from "@/components/app/JaapBanner";
 import { BrandTitle } from "@/components/app/BrandTitle";
 import { CategoryArc } from "@/components/app/CategoryArc";
 import { stotras } from "@/content/stotras";
@@ -37,10 +36,7 @@ const Index = () => {
           </div>
         </header>
 
-        <JaapBanner />
-
-        <section className="mt-6">
-          <h2 className="mb-3 px-1 font-display text-lg font-semibold">Categories</h2>
+        <section className="mt-4">
           <CategoryArc />
         </section>
 

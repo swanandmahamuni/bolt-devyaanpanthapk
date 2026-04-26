@@ -67,27 +67,23 @@ export const MiniJaap = ({ className }: { className?: string }) => {
       className={cn(
         "group relative h-14 w-14 select-none touch-none rounded-full outline-none",
         "transition-transform active:scale-95",
+        pulse && "animate-tap",
+        resetting && "animate-pulse-glow",
         className
       )}
       style={{
-        background: `conic-gradient(hsl(var(--accent)) ${progress}%, hsl(var(--card) / 0.6) ${progress}% 100%)`,
+        // progress arc on outer rim (gold over deep rudraksha brown)
+        background: `conic-gradient(hsl(var(--accent)) ${progress}%, hsl(20 45% 18% / 0.85) ${progress}% 100%)`,
         boxShadow:
-          "0 0 0 1px hsl(var(--accent) / 0.5), 0 6px 18px -4px hsl(20 60% 20% / 0.45), 0 0 24px hsl(var(--accent) / 0.45)",
+          "0 0 0 1px hsl(20 60% 12% / 0.8), 0 6px 18px -4px hsl(20 60% 10% / 0.55), 0 0 22px hsl(35 90% 50% / 0.35)",
       }}
     >
+      {/* Rudraksha bead — slow rotation in place */}
       <span
-        className={cn(
-          "absolute inset-[3px] grid place-items-center rounded-full",
-          "bg-gradient-banner text-primary-foreground",
-          pulse && "animate-tap",
-          resetting && "animate-pulse-glow"
-        )}
-        style={{
-          boxShadow:
-            "inset 0 1px 1px hsl(45 100% 90% / 0.6), inset 0 -3px 8px hsl(20 60% 15% / 0.55)",
-        }}
+        className="rudraksha absolute inset-[3px] grid place-items-center rounded-full"
+        aria-hidden
       >
-        <span className="font-display text-lg font-semibold leading-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]">
+        <span className="rudraksha__count font-display text-base font-semibold leading-none">
           {count > 9999 ? "∞" : count}
         </span>
       </span>
