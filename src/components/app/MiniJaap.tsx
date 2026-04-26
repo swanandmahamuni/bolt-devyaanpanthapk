@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useLocalStorage, todayKey } from "@/lib/storage";
 import { playChime, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
+import rudrakshaImg from "@/assets/rudraksha.png";
 
 /**
  * Floating mini Jaap counter for reading screens.
@@ -72,18 +73,22 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         className
       )}
       style={{
-        // progress arc on outer rim (gold over deep rudraksha brown)
-        background: `conic-gradient(hsl(var(--accent)) ${progress}%, hsl(20 45% 18% / 0.85) ${progress}% 100%)`,
+        // gold progress ring around the bead
+        background: `conic-gradient(hsl(var(--accent)) ${progress}%, hsl(45 60% 50% / 0.18) ${progress}% 100%)`,
         boxShadow:
-          "0 0 0 1px hsl(20 60% 12% / 0.8), 0 6px 18px -4px hsl(20 60% 10% / 0.55), 0 0 22px hsl(35 90% 50% / 0.35)",
+          "0 6px 18px -4px hsl(20 60% 10% / 0.45), 0 0 22px hsl(35 90% 50% / 0.35)",
       }}
     >
-      {/* Rudraksha bead — slow rotation in place */}
-      <span
-        className="rudraksha absolute inset-[3px] grid place-items-center rounded-full"
-        aria-hidden
-      >
-        <span className="rudraksha__count font-display text-base font-semibold leading-none">
+      {/* Real Rudraksha image — slow rotation in place */}
+      <span className="rudraksha-img absolute inset-[3px] grid place-items-center rounded-full overflow-hidden">
+        <img
+          src={rudrakshaImg}
+          alt=""
+          aria-hidden
+          className="rudraksha-img__face h-full w-full object-cover"
+          draggable={false}
+        />
+        <span className="rudraksha-img__count absolute font-display text-[13px] font-bold leading-none text-amber-50 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
           {count > 9999 ? "∞" : count}
         </span>
       </span>
