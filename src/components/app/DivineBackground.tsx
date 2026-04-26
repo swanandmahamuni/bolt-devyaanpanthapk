@@ -1,6 +1,18 @@
 import { useMemo } from "react";
 
+const VARIANTS = ["", "divine-bg--lotus", "divine-bg--temple", "divine-bg--cosmos"];
+
 export const DivineBackground = () => {
+  // Pick a variant once per session so it stays stable while the user navigates
+  const variant = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    const KEY = "divine.bg.variant";
+    const stored = sessionStorage.getItem(KEY);
+    if (stored !== null) return stored;
+    const pick = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
+    sessionStorage.setItem(KEY, pick);
+    return pick;
+  }, []);
   const particles = useMemo(
     () =>
       Array.from({ length: 14 }).map((_, i) => ({
@@ -12,7 +24,7 @@ export const DivineBackground = () => {
     []
   );
   return (
-    <div className="divine-bg" aria-hidden>
+    <div className={`divine-bg ${variant}`} aria-hidden>
       <div className="divine-nebula" />
       <div className="divine-nebula divine-nebula--alt" />
       <div className="divine-noise" />
