@@ -1,4 +1,4 @@
-# Building the Divya Path APK
+# Building the देवयानपंथ (Devyaanpanth) APK
 
 This guide walks you through turning the web app into a real Android `.apk` you can install on your phone. You only need to do the one-time setup once.
 
@@ -39,7 +39,7 @@ npm install
 npx cap add android
 ```
 
-(If it asks: confirm `appId = com.divyapath.app`, `appName = Divya Path`.)
+(If it asks: confirm `appId = com.devyaanpanth.app`, `appName = देवयानपंथ (Devyaanpanth)`.)
 
 ---
 
@@ -78,7 +78,7 @@ android/app/build/outputs/apk/debug/app-debug.apk
 2. On your Android phone, open the file.
 3. Android may say "Install unknown apps" — allow it for your file manager.
 4. Tap **Install**.
-5. Open **Divya Path** from your home screen. 🪔
+5. Open **देवयानपंथ (Devyaanpanth)** from your home screen. 🪔
 
 ---
 
