@@ -13,8 +13,13 @@ export const DivineBackground = () => {
   );
   return (
     <div className="divine-bg" aria-hidden>
+      <div className="divine-nebula" />
+      <div className="divine-nebula divine-nebula--alt" />
+      <div className="divine-noise" />
       <div className="divine-mandala" />
       <div className="divine-rays" />
+      <div className="divine-flare divine-flare--a" />
+      <div className="divine-flare divine-flare--b" />
       <div className="divine-particles">
         {particles.map((p, i) => (
           <span

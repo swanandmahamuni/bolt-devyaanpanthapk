@@ -238,3 +238,158 @@
 @media (prefers-reduced-motion: reduce) {
   .divine-rays, .divine-mandala, .divine-particles span { animation: none; }
 }
+
+/* ============ Nebula, lens flare & texture ============ */
+.divine-nebula {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 30% at 22% 28%, hsl(280 80% 55% / 0.28), transparent 70%),
+    radial-gradient(35% 28% at 78% 22%, hsl(200 90% 55% / 0.22), transparent 70%),
+    radial-gradient(45% 35% at 50% 80%, hsl(25 95% 58% / 0.30), transparent 70%),
+    radial-gradient(30% 25% at 85% 75%, hsl(330 85% 55% / 0.20), transparent 70%);
+  filter: blur(40px) saturate(120%);
+  mix-blend-mode: screen;
+  animation: nebula-drift 60s ease-in-out infinite alternate;
+  opacity: 0.55;
+}
+.dark .divine-nebula { opacity: 0.85; }
+.divine-nebula--alt {
+  animation-duration: 90s;
+  animation-direction: alternate-reverse;
+  filter: blur(60px) saturate(140%);
+  opacity: 0.35;
+}
+
+.divine-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.40  0 0 0 0 0.20  0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.dark .divine-noise { opacity: 0.10; }
+
+.divine-flare {
+  position: absolute;
+  width: 40vmax; height: 40vmax;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle at center, hsl(45 100% 80% / 0.55), hsl(45 100% 70% / 0.15) 30%, transparent 60%);
+  opacity: 0.6;
+}
+.divine-flare--a {
+  top: -10vmax; left: -10vmax;
+  animation: flare-a 28s ease-in-out infinite alternate;
+}
+.divine-flare--b {
+  bottom: -15vmax; right: -10vmax;
+  background:
+    radial-gradient(circle at center, hsl(25 100% 70% / 0.45), hsl(15 100% 60% / 0.12) 30%, transparent 60%);
+  animation: flare-b 36s ease-in-out infinite alternate;
+}
+
+@keyframes nebula-drift {
+  0%   { transform: translate3d(0,0,0) scale(1) rotate(0deg); }
+  50%  { transform: translate3d(2%, -3%, 0) scale(1.08) rotate(8deg); }
+  100% { transform: translate3d(-3%, 2%, 0) scale(1.04) rotate(-6deg); }
+}
+@keyframes flare-a {
+  0%   { transform: translate(0,0) scale(1); opacity: 0.55; }
+  100% { transform: translate(20vmax, 15vmax) scale(1.15); opacity: 0.75; }
+}
+@keyframes flare-b {
+  0%   { transform: translate(0,0) scale(1); opacity: 0.45; }
+  100% { transform: translate(-18vmax, -12vmax) scale(1.1); opacity: 0.7; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .divine-nebula, .divine-flare { animation: none; }
+}
+
+/* ============ Brand wordmark — 3D calligraphy ============ */
+.brand-3d { position: relative; isolation: isolate; }
+.brand-3d__text {
+  background: linear-gradient(180deg, hsl(48 100% 78%) 0%, hsl(38 95% 58%) 45%, hsl(20 85% 42%) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 1px 0 hsl(45 95% 85%),
+    0 2px 0 hsl(40 80% 55%),
+    0 3px 0 hsl(30 70% 40%),
+    0 4px 0 hsl(20 60% 30%),
+    0 6px 12px hsl(20 70% 15% / 0.55),
+    0 0 18px hsl(45 100% 65% / 0.55);
+  filter: drop-shadow(0 0 6px hsl(45 100% 60% / 0.35));
+  display: inline-block;
+}
+.brand-3d__flare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, hsl(45 100% 92% / 0.85) 45%, transparent 60%);
+  -webkit-mask-image: linear-gradient(180deg, black, black);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  animation: brand-flare 5s ease-in-out infinite;
+  border-radius: inherit;
+}
+@keyframes brand-flare {
+  0%, 100% { transform: translateX(-120%); opacity: 0; }
+  40%      { opacity: 0.7; }
+  60%      { transform: translateX(120%); opacity: 0; }
+}
+
+/* ============ Ancient page (for category title) ============ */
+.ancient-page {
+  position: relative;
+  background:
+    radial-gradient(ellipse at top left, hsl(42 70% 88%) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom right, hsl(28 50% 76%) 0%, transparent 60%),
+    linear-gradient(180deg, hsl(40 70% 92%), hsl(36 55% 84%));
+  color: hsl(22 50% 18%);
+  border-radius: 18px;
+  border: 1px solid hsl(35 50% 65%);
+  box-shadow:
+    inset 0 0 30px hsl(28 60% 35% / 0.25),
+    inset 0 0 0 6px hsl(40 60% 88%),
+    inset 0 0 0 7px hsl(35 50% 60% / 0.6),
+    0 10px 22px -10px hsl(20 50% 20% / 0.45);
+}
+.ancient-page::before, .ancient-page::after {
+  content: "❦";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: hsl(25 70% 35% / 0.55);
+  font-size: 12px;
+}
+.ancient-page::before { top: 4px; }
+.ancient-page::after  { bottom: 4px; }
+
+/* ============ 3D icon (for category arc) ============ */
+.icon-3d { perspective: 600px; }
+.icon-3d__face {
+  background: linear-gradient(160deg, hsl(45 100% 75%) 0%, hsl(35 90% 55%) 55%, hsl(20 75% 38%) 100%);
+  color: hsl(22 60% 18%);
+  border: 1px solid hsl(45 80% 75% / 0.7);
+  box-shadow:
+    inset 0 1px 1px hsl(45 100% 95% / 0.9),
+    inset 0 -4px 8px hsl(20 70% 20% / 0.45),
+    0 8px 16px -6px hsl(20 60% 20% / 0.55),
+    0 0 22px hsl(45 100% 60% / 0.35);
+  transform: translateZ(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.icon-3d:hover .icon-3d__face,
+.icon-3d[aria-selected="true"] .icon-3d__face {
+  box-shadow:
+    inset 0 1px 1px hsl(45 100% 95%),
+    inset 0 -4px 10px hsl(20 70% 20% / 0.6),
+    0 12px 22px -6px hsl(20 60% 20% / 0.55),
+    0 0 32px hsl(45 100% 60% / 0.55);
+}
