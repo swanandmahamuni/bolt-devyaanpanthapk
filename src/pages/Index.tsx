@@ -1,17 +1,12 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Flame, BookOpen, Heart, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
 import { JaapBanner } from "@/components/app/JaapBanner";
+import { BrandTitle } from "@/components/app/BrandTitle";
+import { CategoryArc } from "@/components/app/CategoryArc";
 import { stotras } from "@/content/stotras";
 import { useLocalStorage } from "@/lib/storage";
-
-const categories = [
-  { id: "stotra", label: "Stotras", icon: BookOpen, dev: "स्तोत्र" },
-  { id: "aarti", label: "Aartis", icon: Flame, dev: "आरती" },
-  { id: "prarthana", label: "Prarthana", icon: Heart, dev: "प्रार्थना" },
-  { id: "mantra", label: "Mantras", icon: Sparkles, dev: "मंत्र" },
-] as const;
 
 const Index = () => {
   const [recent] = useLocalStorage<string[]>("recent.read", []);
@@ -33,7 +28,9 @@ const Index = () => {
         <header className="mb-5 flex items-center justify-between">
           <div>
             <p className="font-devanagari text-sm text-muted-foreground">{greet} 🙏</p>
-            <h1 className="font-display text-3xl font-semibold leading-tight">Divya Path</h1>
+            <h1 className="leading-tight">
+              <BrandTitle size="lg" />
+            </h1>
           </div>
           <div className="grid h-11 w-11 place-items-center rounded-full bg-gradient-gold text-xl shadow-soft">
             ॐ
@@ -44,27 +41,7 @@ const Index = () => {
 
         <section className="mt-6">
           <h2 className="mb-3 px-1 font-display text-lg font-semibold">Categories</h2>
-          <div className="grid grid-cols-2 gap-3">
-            {categories.map((c) => {
-              const Icon = c.icon;
-              return (
-                <Link
-                  key={c.id}
-                  to={`/library?cat=${c.id}`}
-                  className="parchment group relative overflow-hidden p-4 transition active:scale-[0.97]"
-                >
-                  <div className="absolute -right-4 -top-4 font-devanagari text-5xl text-primary/10">
-                    {c.dev}
-                  </div>
-                  <Icon className="h-6 w-6 text-primary" />
-                  <div className="mt-3 font-display text-xl font-semibold">{c.label}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {stotras.filter((s) => s.category === c.id).length} texts
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <CategoryArc />
         </section>
 
         <section className="mt-6">

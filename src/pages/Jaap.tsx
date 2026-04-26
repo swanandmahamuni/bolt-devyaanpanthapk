@@ -2,7 +2,6 @@ import { useState } from "react";
 import { RotateCcw, Check, Flame, Trophy } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
-import { mantras } from "@/content/stotras";
 import { useLocalStorage, todayKey } from "@/lib/storage";
 import { playChime, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
@@ -11,7 +10,6 @@ const presets = [54, 108, 1008];
 
 const Jaap = () => {
   const [count, setCount] = useLocalStorage<number>("jaap.count", 0);
-  const [mantraId, setMantraId] = useLocalStorage<string>("jaap.activeMantra", "om");
   const [target, setTarget] = useLocalStorage<number>("jaap.target", 108);
   const [history, setHistory] = useLocalStorage<Record<string, number>>("jaap.history", {});
   const [streak, setStreak] = useLocalStorage<{ last: string; days: number }>("jaap.streak", {
@@ -20,7 +18,6 @@ const Jaap = () => {
   });
   const [tap, setTap] = useState(false);
 
-  const mantra = mantras.find((m) => m.id === mantraId) ?? mantras[0];
   const progress = Math.min(100, (count / target) * 100);
 
   const onTap = () => {
@@ -57,36 +54,11 @@ const Jaap = () => {
       <AppShell>
         <h1 className="mb-4 font-display text-3xl font-semibold">Jaap</h1>
 
-        {/* Mantra picker */}
-        <div className="mb-4">
-          <div className="mb-2 px-1 text-xs uppercase tracking-wider text-muted-foreground">Mantra</div>
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1">
-            {mantras.map((m) => (
-              <button
-                key={m.id}
-                onClick={() => setMantraId(m.id)}
-                className={cn(
-                  "shrink-0 rounded-2xl border px-4 py-2 text-left transition",
-                  mantraId === m.id
-                    ? "border-transparent bg-gradient-banner text-primary-foreground shadow-soft"
-                    : "border-border bg-card/60"
-                )}
-              >
-                <div className="font-devanagari text-base leading-tight">{m.text_dev}</div>
-                <div className="text-[10px] uppercase opacity-80">{m.text_en}</div>
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Counter */}
         <div className="parchment relative overflow-hidden p-6 text-center">
-          <div className="text-xs uppercase tracking-wider text-primary">Now chanting</div>
-          <div className="mt-1 font-devanagari text-2xl">{mantra.text_dev}</div>
-
           {/* Ring */}
           <div
-            className={cn("relative mx-auto mt-6 grid h-56 w-56 place-items-center", tap && "animate-tap")}
+            className={cn("relative mx-auto grid h-56 w-56 place-items-center", tap && "animate-tap")}
             style={{
               background: `conic-gradient(hsl(var(--primary)) ${progress}%, hsl(var(--muted)) ${progress}% 100%)`,
               borderRadius: "50%",

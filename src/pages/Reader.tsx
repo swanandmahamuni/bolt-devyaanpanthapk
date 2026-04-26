@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Heart, Languages, Minus, Plus, Share2 } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
+import { MiniJaap } from "@/components/app/MiniJaap";
 import { stotras } from "@/content/stotras";
 import { useLocalStorage } from "@/lib/storage";
 import { cn } from "@/lib/utils";
@@ -58,11 +59,12 @@ const Reader = () => {
     <>
       <DivineBackground />
       <AppShell>
+        <MiniJaap className="fixed right-3 top-3 z-50" />
         <div className="-mx-1 mb-3 flex items-center justify-between">
           <button onClick={() => nav(-1)} className="rounded-full bg-card/70 p-2 backdrop-blur">
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <div className="flex gap-1.5">
+          <div className="flex gap-1.5 pr-16">
             <button
               onClick={cycleScript}
               className="flex items-center gap-1 rounded-full bg-card/70 px-3 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur"
