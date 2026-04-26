@@ -1,24 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Heart, Languages, Minus, Plus, Share2 } from "lucide-react";
+import { ArrowLeft, Heart, Languages } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
-import { MiniJaap } from "@/components/app/MiniJaap";
 import { stotras } from "@/content/stotras";
 import { useLocalStorage } from "@/lib/storage";
 import { cn } from "@/lib/utils";
-import { toast } from "sonner";
-
-const sizes = [16, 19, 22, 26, 30];
 
 const Reader = () => {
   const { id } = useParams();
   const nav = useNavigate();
   const stotra = stotras.find((s) => s.id === id);
   const [script, setScript] = useLocalStorage<"dev" | "en" | "both">("reader.script", "both");
-  const [sizeIdx, setSizeIdx] = useLocalStorage<number>("reader.size", 2);
+  const [zoom, setZoom] = useLocalStorage<number>("reader.zoom", 1);
   const [favs, setFavs] = useLocalStorage<string[]>("favorites", []);
   const [recent, setRecent] = useLocalStorage<string[]>("recent.read", []);
+  const pinchRef = useRef<{ startDist: number; startZoom: number } | null>(null);
+  const [liveZoom, setLiveZoom] = useState<number | null>(null);
 
   useEffect(() => {
     if (!stotra) return;
@@ -39,27 +37,44 @@ const Reader = () => {
   }
 
   const isFav = favs.includes(stotra.id);
-  const fontSize = sizes[sizeIdx];
+  const effectiveZoom = liveZoom ?? zoom;
+  const baseSize = 22;
+  const fontSize = Math.round(baseSize * effectiveZoom);
 
   const cycleScript = () =>
     setScript(script === "both" ? "dev" : script === "dev" ? "en" : "both");
 
-  const share = async () => {
-    const text = `${stotra.title_dev}\n${stotra.title_en}\n\n— Divya Path`;
-    try {
-      if (navigator.share) await navigator.share({ title: stotra.title_en, text });
-      else {
-        await navigator.clipboard.writeText(text);
-        toast.success("Copied to clipboard");
-      }
-    } catch {}
+  // Pinch-to-zoom on the reading surface
+  const dist = (touches: React.TouchList) => {
+    const a = touches[0], b = touches[1];
+    const dx = a.clientX - b.clientX, dy = a.clientY - b.clientY;
+    return Math.hypot(dx, dy);
+  };
+  const onTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      pinchRef.current = { startDist: dist(e.touches), startZoom: zoom };
+    }
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 2 && pinchRef.current) {
+      e.preventDefault();
+      const ratio = dist(e.touches) / pinchRef.current.startDist;
+      const next = Math.min(2.4, Math.max(0.7, pinchRef.current.startZoom * ratio));
+      setLiveZoom(next);
+    }
+  };
+  const onTouchEnd = () => {
+    if (liveZoom != null) {
+      setZoom(liveZoom);
+      setLiveZoom(null);
+    }
+    pinchRef.current = null;
   };
 
   return (
     <>
       <DivineBackground />
       <AppShell>
-        <MiniJaap className="fixed right-3 top-3 z-50" />
         <div className="-mx-1 mb-3 flex items-center justify-between">
           <button onClick={() => nav(-1)} className="rounded-full bg-card/70 p-2 backdrop-blur">
             <ArrowLeft className="h-5 w-5" />
@@ -74,20 +89,6 @@ const Reader = () => {
               {script === "dev" ? "देव" : script === "en" ? "EN" : "Both"}
             </button>
             <button
-              onClick={() => setSizeIdx(Math.max(0, sizeIdx - 1))}
-              className="rounded-full bg-card/70 p-2 backdrop-blur"
-              aria-label="Smaller"
-            >
-              <Minus className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => setSizeIdx(Math.min(sizes.length - 1, sizeIdx + 1))}
-              className="rounded-full bg-card/70 p-2 backdrop-blur"
-              aria-label="Larger"
-            >
-              <Plus className="h-4 w-4" />
-            </button>
-            <button
               onClick={() =>
                 setFavs(isFav ? favs.filter((x) => x !== stotra.id) : [stotra.id, ...favs])
               }
@@ -96,23 +97,22 @@ const Reader = () => {
             >
               <Heart className={cn("h-4 w-4", isFav && "fill-primary text-primary")} />
             </button>
-            <button onClick={share} className="rounded-full bg-card/70 p-2 backdrop-blur" aria-label="Share">
-              <Share2 className="h-4 w-4" />
-            </button>
           </div>
         </div>
 
-        <div className="parchment p-5 sm:p-6">
+        <div
+          className="parchment touch-pan-y p-5 sm:p-6"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          onTouchCancel={onTouchEnd}
+        >
           <div className="text-xs uppercase tracking-wider text-primary">
             {stotra.deity} · {stotra.category}
           </div>
-          <h1 className="mt-1 font-devanagari text-2xl font-semibold leading-snug">
+          <h1 className="mt-1 font-devanagari text-2xl font-bold leading-snug">
             {stotra.title_dev}
           </h1>
-          <p className="mt-1 font-display text-base text-muted-foreground">{stotra.title_en}</p>
-          {stotra.description && (
-            <p className="mt-3 text-sm italic text-muted-foreground">{stotra.description}</p>
-          )}
 
           <div className="mt-5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
@@ -124,7 +124,7 @@ const Reader = () => {
                 </div>
                 {(script === "dev" || script === "both") && (
                   <pre
-                    className="font-devanagari whitespace-pre-wrap leading-[1.9] text-foreground"
+                    className="font-devanagari whitespace-pre-wrap font-semibold leading-[1.9] text-foreground"
                     style={{ fontSize: `${fontSize}px` }}
                   >
 {v.dev}
@@ -133,7 +133,7 @@ const Reader = () => {
                 {(script === "en" || script === "both") && (
                   <pre
                     className={cn(
-                      "font-display whitespace-pre-wrap italic leading-relaxed text-muted-foreground",
+                      "font-display whitespace-pre-wrap font-semibold leading-relaxed text-foreground/75",
                       script === "both" && "mt-2"
                     )}
                     style={{ fontSize: `${Math.max(13, fontSize - 4)}px` }}
