@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import bapuImg from "@/assets/bapu.webp";
 
 const VARIANTS = ["", "divine-bg--lotus", "divine-bg--temple", "divine-bg--cosmos"];
 
@@ -23,15 +24,47 @@ export const DivineBackground = () => {
       })),
     []
   );
+  // Slow, drifting golden dust — separate, slower layer than the upward sparks
+  const dust = useMemo(
+    () =>
+      Array.from({ length: 26 }).map((_, i) => ({
+        left: `${(i * 11 + 3) % 100}%`,
+        top: `${(i * 17 + 7) % 100}%`,
+        delay: `${(i * 1.3) % 22}s`,
+        duration: `${28 + ((i * 5) % 24)}s`,
+        size: `${2 + (i % 3)}px`,
+      })),
+    []
+  );
   return (
     <div className={`divine-bg ${variant}`} aria-hidden>
       <div className="divine-nebula" />
       <div className="divine-nebula divine-nebula--alt" />
+      {/* Bapu portrait blended softly into the background */}
+      <div
+        className="divine-bapu"
+        style={{ backgroundImage: `url(${bapuImg})` }}
+      />
       <div className="divine-noise" />
       <div className="divine-mandala" />
       <div className="divine-rays" />
       <div className="divine-flare divine-flare--a" />
       <div className="divine-flare divine-flare--b" />
+      <div className="divine-dust">
+        {dust.map((p, i) => (
+          <span
+            key={i}
+            style={{
+              left: p.left,
+              top: p.top,
+              animationDelay: p.delay,
+              animationDuration: p.duration,
+              width: p.size,
+              height: p.size,
+            }}
+          />
+        ))}
+      </div>
       <div className="divine-particles">
         {particles.map((p, i) => (
           <span
