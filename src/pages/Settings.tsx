@@ -4,6 +4,7 @@ import { DivineBackground } from "@/components/app/DivineBackground";
 import { useLocalStorage } from "@/lib/storage";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
+import brandWordmark from "@/assets/brand-wordmark.png";
 
 const Settings = () => {
   const [theme, setTheme] = useLocalStorage<"light" | "dark" | "auto">("theme", "auto");
@@ -88,9 +89,14 @@ const Settings = () => {
           </button>
         </section>
 
-        <p className="mt-6 text-center text-xs text-muted-foreground">
-          Divya Path · made with bhakti 🙏
-        </p>
+        <div className="mt-8 flex justify-center">
+          <img
+            src={brandWordmark}
+            alt="हरि ॐ श्रीराम अंबड़ नाथसंविध"
+            className="max-h-32 w-auto object-contain drop-shadow-[0_0_24px_hsl(45_100%_60%/0.45)]"
+            draggable={false}
+          />
+        </div>
       </AppShell>
     </>
   );
