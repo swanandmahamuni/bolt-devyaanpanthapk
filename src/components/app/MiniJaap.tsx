@@ -66,21 +66,18 @@ export const MiniJaap = ({ className }: { className?: string }) => {
       onContextMenu={(e) => e.preventDefault()}
       aria-label={`Jaap counter ${count}`}
       className={cn(
-        "group relative h-14 w-14 select-none touch-none rounded-full outline-none",
+        "group relative h-16 w-16 select-none touch-none rounded-full outline-none bg-transparent border-0 p-0",
         "transition-transform active:scale-95",
         pulse && "animate-tap",
         resetting && "animate-pulse-glow",
         className
       )}
-      style={{
-        // gold progress ring around the bead
-        background: `conic-gradient(hsl(var(--accent)) ${progress}%, hsl(45 60% 50% / 0.18) ${progress}% 100%)`,
-        boxShadow:
-          "0 6px 18px -4px hsl(20 60% 10% / 0.45), 0 0 22px hsl(35 90% 50% / 0.35)",
-      }}
     >
+      {/* Aura + rays behind the bead (compact, won't bleed) */}
+      <span aria-hidden className="rudraksha-aura absolute inset-0 rounded-full" />
+      <span aria-hidden className="rudraksha-rays absolute inset-0 rounded-full" />
       {/* Real Rudraksha image — slow rotation in place */}
-      <span className="rudraksha-img absolute inset-[3px] grid place-items-center rounded-full overflow-hidden">
+      <span className="rudraksha-img absolute inset-0 grid place-items-center rounded-full overflow-hidden">
         <img
           src={rudrakshaImg}
           alt=""
@@ -88,7 +85,7 @@ export const MiniJaap = ({ className }: { className?: string }) => {
           className="rudraksha-img__face h-full w-full object-cover"
           draggable={false}
         />
-        <span className="rudraksha-img__count absolute font-display text-[13px] font-bold leading-none text-amber-50 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+        <span className="rudraksha-img__count absolute font-display text-[18px] font-extrabold leading-none text-amber-50 drop-shadow-[0_2px_3px_rgba(0,0,0,0.95)]">
           {count > 9999 ? "∞" : count}
         </span>
       </span>
