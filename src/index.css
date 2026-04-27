@@ -470,17 +470,21 @@
 }
 
 /* ============ Rudraksha bead (mini jaap counter) ============ */
-.rudraksha-img { isolation: isolate; z-index: 1; }
+.rudraksha-img { isolation: isolate; z-index: 1; overflow: hidden; }
+.rudraksha-img__face {
+  /* Hard-clip the PNG to a perfect circle so the transparent square edges never show */
+  -webkit-mask-image: radial-gradient(circle, black 58%, transparent 60%);
+  mask-image: radial-gradient(circle, black 58%, transparent 60%);
+}
 .rudraksha-backdrop {
+  /* Soft glow only — no hard disc behind the bead */
   background:
     radial-gradient(circle at 50% 50%,
-      hsl(35 95% 65% / 0.95) 0%,
-      hsl(28 90% 55% / 0.85) 35%,
-      hsl(22 85% 45% / 0.55) 60%,
-      hsl(20 80% 35% / 0.18) 82%,
-      transparent 100%);
-  filter: blur(2px);
-  transform: scale(1.18);
+      hsl(35 95% 60% / 0.55) 0%,
+      hsl(28 90% 50% / 0.30) 38%,
+      transparent 70%);
+  filter: blur(4px);
+  transform: scale(1.25);
   pointer-events: none;
   z-index: 0;
 }
