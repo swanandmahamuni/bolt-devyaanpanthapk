@@ -13,7 +13,7 @@ const tabs = [
 export const AppShell = ({ children }: { children: ReactNode }) => {
   const { pathname } = useLocation();
   return (
-    <div className="relative mx-auto min-h-[100dvh] max-w-md pb-24">
+    <div className="relative mx-auto min-h-[100dvh] max-w-md overflow-hidden pb-24">
       <div className="px-4 pt-6">{children}</div>
 
       {/* Floating Rudraksha jaap bead — always visible */}
