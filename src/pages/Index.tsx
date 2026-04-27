@@ -24,8 +24,8 @@ const Index = () => {
           {/* spacer pushes the arc to the bottom */}
           <div className="flex-1" />
 
-          {/* Category arc anchored at the bottom with lens-flare glow */}
-          <section className="relative mb-2 mt-6">
+          {/* Category arc anchored further at the bottom with lens-flare glow */}
+          <section className="relative -mb-4 mt-10 pb-2">
             <div className="arc-flare" aria-hidden />
             <CategoryArc />
           </section>
