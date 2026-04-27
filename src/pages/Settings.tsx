@@ -4,7 +4,7 @@ import { DivineBackground } from "@/components/app/DivineBackground";
 import { useLocalStorage } from "@/lib/storage";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
-import brandWordmark from "@/assets/brand-wordmark.png";
+import brandWordmark from "@/assets/brand-wordmark-clean.png";
 
 const Settings = () => {
   const [theme, setTheme] = useLocalStorage<"light" | "dark" | "auto">("theme", "auto");
