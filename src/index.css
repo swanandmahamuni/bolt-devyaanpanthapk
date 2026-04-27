@@ -470,7 +470,7 @@
 }
 
 /* ============ Rudraksha bead (mini jaap counter) ============ */
-.rudraksha-img { isolation: isolate; }
+.rudraksha-img { isolation: isolate; z-index: 1; }
 .rudraksha-backdrop {
   background:
     radial-gradient(circle at 32% 28%, hsl(28 75% 35%) 0%, hsl(20 70% 20%) 45%, hsl(15 75% 10%) 78%, hsl(10 80% 6%) 100%);
