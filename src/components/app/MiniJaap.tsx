@@ -76,6 +76,8 @@ export const MiniJaap = ({ className }: { className?: string }) => {
       {/* Aura + rays behind the bead (compact, won't bleed) */}
       <span aria-hidden className="rudraksha-aura absolute inset-0 rounded-full" />
       <span aria-hidden className="rudraksha-rays absolute inset-0 rounded-full" />
+      {/* Solid bead backdrop so transparent PNG areas are filled */}
+      <span aria-hidden className="rudraksha-backdrop absolute inset-0 rounded-full" />
       {/* Real Rudraksha image — slow rotation in place */}
       <span className="rudraksha-img absolute inset-0 grid place-items-center rounded-full overflow-hidden">
         <img
@@ -85,10 +87,12 @@ export const MiniJaap = ({ className }: { className?: string }) => {
           className="rudraksha-img__face h-full w-full object-cover"
           draggable={false}
         />
-        <span className="rudraksha-img__count absolute font-display text-[18px] font-extrabold leading-none text-amber-50 drop-shadow-[0_2px_3px_rgba(0,0,0,0.95)]">
+        <span className="rudraksha-img__count absolute font-display text-[24px] font-black leading-none text-amber-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] tracking-tight">
           {count > 9999 ? "∞" : count}
         </span>
       </span>
+      {/* Lens flare overlay */}
+      <span aria-hidden className="rudraksha-flare absolute inset-0 rounded-full" />
     </button>
   );
 };
