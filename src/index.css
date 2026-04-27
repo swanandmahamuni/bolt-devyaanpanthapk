@@ -471,11 +471,6 @@
 
 /* ============ Rudraksha bead (mini jaap counter) ============ */
 .rudraksha-img { isolation: isolate; z-index: 1; overflow: hidden; }
-.rudraksha-img__face {
-  /* Hard-clip the PNG to a perfect circle so the transparent square edges never show */
-  -webkit-mask-image: radial-gradient(circle, black 58%, transparent 60%);
-  mask-image: radial-gradient(circle, black 58%, transparent 60%);
-}
 .rudraksha-backdrop {
   /* Soft glow only — no hard disc behind the bead */
   background:
