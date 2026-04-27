@@ -125,8 +125,9 @@ export const CategoryArc = () => {
               </span>
               <span
                 className={cn(
-                  "font-display text-[11px] font-semibold uppercase tracking-wider text-foreground/85",
-                  isActive && "text-primary"
+                  "font-display text-[12px] font-bold uppercase tracking-wider text-white",
+                  "drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)]",
+                  isActive && "text-amber-200"
                 )}
               >
                 {c.label}
