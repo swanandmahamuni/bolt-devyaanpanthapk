@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useLocalStorage, todayKey } from "@/lib/storage";
 import { playChime, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
-import rudrakshaImg from "@/assets/rudraksha.png";
+import rudrakshaImg from "@/assets/rudraksha-clean.png";
 
 /**
  * Floating mini Jaap counter for reading screens.
@@ -73,10 +73,8 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         className
       )}
     >
-      {/* Aura + rays behind the bead (compact, won't bleed) */}
+      {/* Soft saffron glow behind the bead */}
       <span aria-hidden className="rudraksha-aura absolute inset-0 rounded-full" />
-      <span aria-hidden className="rudraksha-rays absolute inset-0 rounded-full" />
-      {/* Solid bead backdrop so transparent PNG areas are filled */}
       <span aria-hidden className="rudraksha-backdrop absolute inset-0 rounded-full" />
       {/* Real Rudraksha image — slow rotation in place */}
       <span className="rudraksha-img absolute inset-0 grid place-items-center rounded-full overflow-hidden">

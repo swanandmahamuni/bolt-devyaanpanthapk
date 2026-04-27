@@ -13,7 +13,7 @@ const Index = () => {
       <DivineBackground />
       <AppShell>
         {/* flex column so the category arc sits at the bottom of the screen */}
-        <div className="flex min-h-[calc(100dvh-2rem)] flex-col">
+        <div className="relative flex min-h-[calc(100dvh-8.5rem)] flex-col overflow-hidden">
           <header className="pt-2">
             <p className="font-devanagari text-sm text-muted-foreground">{greet} 🙏</p>
             <h1 className="leading-tight">
@@ -22,10 +22,8 @@ const Index = () => {
           </header>
 
           {/* spacer pushes the arc to the bottom */}
-          <div className="flex-1" />
-
           {/* Category arc anchored further at the bottom with lens-flare glow */}
-          <section className="relative -mb-4 mt-10 pb-2">
+          <section className="absolute inset-x-0 bottom-0 pb-0">
             <div className="arc-flare" aria-hidden />
             <CategoryArc />
           </section>
