@@ -533,6 +533,8 @@
   animation: rudraksha-spin 36s linear infinite;
   filter: drop-shadow(0 1px 2px hsl(20 60% 10% / 0.5));
   position: relative;
+  -webkit-mask-image: radial-gradient(circle, black 58%, transparent 60%);
+  mask-image: radial-gradient(circle, black 58%, transparent 60%);
 }
 .rudraksha-img__face::after {
   content: "";
