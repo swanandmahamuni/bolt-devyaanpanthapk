@@ -317,11 +317,11 @@
   background-repeat: no-repeat;
   background-position: center 38%;
   background-size: min(95vmin, 620px) auto;
-  opacity: 0.78;
+  opacity: 0.72;
   mix-blend-mode: normal;
-  filter: saturate(1) contrast(1.03);
-  -webkit-mask-image: radial-gradient(ellipse 55% 55% at center 38%, black 35%, rgba(0,0,0,0.85) 55%, transparent 80%);
-  mask-image: radial-gradient(ellipse 55% 55% at center 38%, black 35%, rgba(0,0,0,0.85) 55%, transparent 80%);
+  filter: saturate(1) contrast(1.02) blur(0.4px);
+  -webkit-mask-image: radial-gradient(ellipse 48% 48% at center 38%, black 18%, rgba(0,0,0,0.7) 42%, rgba(0,0,0,0.3) 65%, transparent 88%);
+  mask-image: radial-gradient(ellipse 48% 48% at center 38%, black 18%, rgba(0,0,0,0.7) 42%, rgba(0,0,0,0.3) 65%, transparent 88%);
   pointer-events: none;
 }
 .dark .divine-bapu { opacity: 0.7; mix-blend-mode: normal; }
