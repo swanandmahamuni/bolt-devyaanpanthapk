@@ -16,8 +16,8 @@ export const AppShell = ({ children }: { children: ReactNode }) => {
     <div className="relative mx-auto min-h-[100dvh] max-w-md overflow-hidden pb-24">
       <div className="px-4 pt-6">{children}</div>
 
-      {/* Floating Rudraksha jaap bead — always visible */}
-      <MiniJaap className="fixed right-3 top-3 z-50" />
+      {/* Floating Rudraksha jaap bead — always visible, draggable */}
+      <MiniJaap />
 
       <nav className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md px-3 pb-3">
         <div className="glass flex items-center justify-around rounded-2xl px-2 py-2 shadow-soft">
