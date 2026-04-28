@@ -65,14 +65,14 @@ export const CategoryArc = () => {
 
   // Visual layout: arc with the active item at the bottom-center.
   // Each item is offset by step degrees; we tilt them along a half-circle.
-  const radius = 140; // px — wider arc
-  const step = 30;    // degrees between items (more spread)
+  const radius = 175; // px — wider arc
+  const step = 34;    // degrees between items (more spread)
 
   return (
     <div className="relative">
       {/* Arc of icons */}
       <div
-        className="relative mx-auto h-60 w-full touch-pan-y select-none"
+        className="relative mx-auto h-56 w-full touch-pan-y select-none"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
