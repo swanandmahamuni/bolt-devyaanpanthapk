@@ -72,7 +72,7 @@ export const CategoryArc = () => {
     <div className="relative">
       {/* Arc of icons */}
       <div
-        className="relative mx-auto h-56 w-full touch-pan-y select-none"
+        className="relative mx-auto h-44 w-full touch-pan-y select-none"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
