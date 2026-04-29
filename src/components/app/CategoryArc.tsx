@@ -65,14 +65,14 @@ export const CategoryArc = () => {
 
   // Visual layout: arc with the active item at the bottom-center.
   // Each item is offset by step degrees; we tilt them along a half-circle.
-  const radius = 130; // px — smaller arc
-  const step = 30;    // degrees between items
+  const radius = 110; // px — smaller arc
+  const step = 28;    // degrees between items
 
   return (
     <div className="relative">
       {/* Arc of icons */}
       <div
-        className="relative mx-auto h-32 w-full touch-pan-y select-none"
+        className="relative mx-auto h-28 w-full touch-pan-y select-none"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -93,7 +93,7 @@ export const CategoryArc = () => {
           const y = -Math.cos(rad) * radius + radius; // arc going up from bottom
 
           const abs = Math.abs(d);
-          const scale = abs === 0 ? 1.25 : abs === 1 ? 0.85 : 0.6;
+          const scale = abs === 0 ? 1.15 : abs === 1 ? 0.78 : 0.55;
           const opacity = abs === 0 ? 1 : abs === 1 ? 0.55 : 0.25;
           const z = 10 - abs;
 
@@ -120,8 +120,8 @@ export const CategoryArc = () => {
                 zIndex: z,
               }}
             >
-              <span className="icon-3d__face grid h-12 w-12 place-items-center rounded-2xl">
-                <Icon className="h-5 w-5" strokeWidth={1.6} />
+              <span className="icon-3d__face grid h-11 w-11 place-items-center rounded-2xl">
+                <Icon className="h-4 w-4" strokeWidth={1.6} />
               </span>
               <span
                 className={cn(
