@@ -65,14 +65,14 @@ export const CategoryArc = () => {
 
   // Visual layout: arc with the active item at the bottom-center.
   // Each item is offset by step degrees; we tilt them along a half-circle.
-  const radius = 82; // px — compact bottom-right arc tucked into nav
-  const step = 25;   // degrees between items
+  const radius = 78; // px — compact centered arc tucked into nav
+  const step = 24;   // degrees between items
 
   return (
     <div className="relative">
       {/* Arc of icons */}
       <div
-        className="relative ml-auto h-20 w-full touch-pan-y select-none"
+        className="relative mx-auto h-[92px] w-full touch-pan-y select-none"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -111,7 +111,7 @@ export const CategoryArc = () => {
               aria-label={c.label}
               aria-selected={isActive}
               className={cn(
-                "icon-3d absolute left-[62%] top-0 flex w-14 -translate-x-1/2 flex-col items-center gap-0.5",
+                "icon-3d absolute left-1/2 top-0 flex w-14 -translate-x-1/2 flex-col items-center gap-0.5",
                 "transition-all duration-300 ease-out"
               )}
               style={{
