@@ -22,7 +22,7 @@ const Index = () => {
           </header>
 
           {/* Category arc anchored bottom-right, tucked just above the nav */}
-          <section className="pointer-events-none fixed bottom-8 right-1 z-30 w-[250px] max-w-[72vw] pb-0 sm:right-[max(0.25rem,calc((100vw-28rem)/2+0.25rem))]">
+          <section className="pointer-events-none fixed -bottom-2 right-0 z-30 w-[240px] max-w-[70vw] pb-0 sm:right-[max(0rem,calc((100vw-28rem)/2))]">
             <div className="arc-flare" aria-hidden />
             <div className="arc-shimmer" aria-hidden />
             <div className="pointer-events-auto">
