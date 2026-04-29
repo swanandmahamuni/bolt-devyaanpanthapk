@@ -19,8 +19,8 @@ export const AppShell = ({ children }: { children: ReactNode }) => {
       {/* Floating Rudraksha jaap bead — always visible, draggable */}
       <MiniJaap />
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md px-3 pb-3">
-        <div className="glass flex items-center justify-around rounded-2xl px-2 py-2 shadow-soft">
+      <nav className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md px-4 pb-2">
+        <div className="flex items-center justify-around rounded-full border border-white/10 bg-background/30 px-2 py-1.5 backdrop-blur-md shadow-soft">
           {tabs.map((t) => {
             const active =
               t.to === "/" ? pathname === "/" : pathname.startsWith(t.to);
@@ -29,15 +29,15 @@ export const AppShell = ({ children }: { children: ReactNode }) => {
               <Link
                 key={t.to}
                 to={t.to}
+                aria-label={t.label}
                 className={cn(
-                  "flex flex-1 flex-col items-center gap-0.5 rounded-xl px-2 py-1.5 text-[11px] font-medium transition",
+                  "flex flex-1 items-center justify-center rounded-full px-2 py-1.5 transition",
                   active
-                    ? "bg-gradient-gold text-accent-foreground shadow-soft"
+                    ? "text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.55)]"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <Icon className="h-5 w-5" />
-                {t.label}
+                <Icon className="h-4 w-4" strokeWidth={1.8} />
               </Link>
             );
           })}
