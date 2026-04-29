@@ -385,6 +385,56 @@
   .arc-flare { animation: none; }
 }
 
+/* ============ Animated arc shimmer track (curved sweep) ============ */
+.arc-shimmer {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 70px;
+  pointer-events: none;
+  border-bottom-left-radius: 100% 90%;
+  border-bottom-right-radius: 100% 90%;
+  border-top-left-radius: 100% 90%;
+  border-top-right-radius: 100% 90%;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+.arc-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(80% 120% at 50% 100%, hsl(45 100% 75% / 0.35), transparent 65%);
+  filter: blur(6px);
+}
+.arc-shimmer::after {
+  content: "";
+  position: absolute;
+  left: -30%;
+  top: 50%;
+  width: 60%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(45 100% 85% / 0.0) 10%,
+    hsl(45 100% 85% / 0.95) 50%,
+    hsl(45 100% 85% / 0.0) 90%,
+    transparent 100%);
+  filter: blur(2px);
+  animation: arc-shimmer-sweep 3.2s linear infinite;
+}
+@keyframes arc-shimmer-sweep {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(220%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arc-shimmer::after { animation: none; }
+}
+
 /* ============ Brand wordmark — 3D calligraphy ============ */
 .brand-3d { position: relative; isolation: isolate; }
 .brand-3d__text {
