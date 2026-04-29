@@ -21,10 +21,12 @@ const Index = () => {
             </h1>
           </header>
 
-          {/* Category arc anchored just above the slim bottom nav */}
-          <section className="absolute inset-x-0 bottom-10 pb-0">
+          {/* Category arc tucked behind the slim bottom nav so icons appear to rise from behind it */}
+          <section className="pointer-events-none absolute inset-x-0 bottom-6 z-30 pb-0">
             <div className="arc-flare" aria-hidden />
-            <CategoryArc />
+            <div className="pointer-events-auto">
+              <CategoryArc />
+            </div>
           </section>
         </div>
       </AppShell>
