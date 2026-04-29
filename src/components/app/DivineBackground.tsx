@@ -47,7 +47,6 @@ export const DivineBackground = () => {
       />
       <div className="divine-noise" />
       <div className="divine-mandala" />
-      <div className="divine-rays" />
       <div className="divine-flare divine-flare--a" />
       <div className="divine-flare divine-flare--b" />
       <div className="divine-dust">

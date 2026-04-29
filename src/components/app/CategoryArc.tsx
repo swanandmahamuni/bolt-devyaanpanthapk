@@ -65,8 +65,8 @@ export const CategoryArc = () => {
 
   // Visual layout: arc with the active item at the bottom-center.
   // Each item is offset by step degrees; we tilt them along a half-circle.
-  const radius = 78; // px — compact centered arc tucked into nav
-  const step = 24;   // degrees between items
+  const radius = 130; // px — wider arc spanning full nav width
+  const step = 22;    // degrees between items
 
   return (
     <div className="relative">
