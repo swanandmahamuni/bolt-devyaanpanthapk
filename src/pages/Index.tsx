@@ -22,7 +22,7 @@ const Index = () => {
           </header>
 
           {/* Category arc anchored directly above the bottom nav */}
-          <section className="absolute inset-x-0 bottom-1 pb-0">
+          <section className="absolute inset-x-0 bottom-12 pb-0">
             <div className="arc-flare" aria-hidden />
             <CategoryArc />
           </section>
