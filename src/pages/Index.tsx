@@ -21,8 +21,8 @@ const Index = () => {
             </h1>
           </header>
 
-          {/* Category arc seated in the band just above the bottom nav */}
-          <section className="pointer-events-none absolute inset-x-0 bottom-16 z-30 pb-0">
+          {/* Category arc anchored bottom-right, tucked just above the nav */}
+          <section className="pointer-events-none fixed bottom-8 right-1 z-30 w-[250px] max-w-[72vw] pb-0 sm:right-[max(0.25rem,calc((100vw-28rem)/2+0.25rem))]">
             <div className="arc-flare" aria-hidden />
             <div className="arc-shimmer" aria-hidden />
             <div className="pointer-events-auto">
