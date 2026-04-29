@@ -21,11 +21,11 @@ const Index = () => {
             </h1>
           </header>
 
-          {/* Category arc anchored bottom-right, tucked just above the nav */}
-          <section className="pointer-events-none fixed -bottom-2 right-0 z-30 w-[240px] max-w-[70vw] pb-0 sm:right-[max(0rem,calc((100vw-28rem)/2))]">
+          {/* Category arc centered just above the bottom nav, partially tucked behind it */}
+          <section className="pointer-events-none fixed inset-x-0 bottom-8 z-30 mx-auto flex max-w-md justify-center px-4">
             <div className="arc-flare" aria-hidden />
             <div className="arc-shimmer" aria-hidden />
-            <div className="pointer-events-auto">
+            <div className="pointer-events-auto w-[280px] max-w-[78vw]">
               <CategoryArc />
             </div>
           </section>
