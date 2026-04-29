@@ -317,14 +317,14 @@
   background-repeat: no-repeat;
   background-position: center 38%;
   background-size: min(95vmin, 620px) auto;
-  opacity: 0.55;
+  opacity: 0.85;
   mix-blend-mode: normal;
-  filter: saturate(0.95) contrast(1.0) blur(1.4px);
-  -webkit-mask-image: radial-gradient(ellipse 38% 40% at center 38%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.18) 60%, transparent 78%);
-  mask-image: radial-gradient(ellipse 38% 40% at center 38%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.18) 60%, transparent 78%);
+  filter: saturate(1.05) contrast(1.02) blur(0.6px);
+  -webkit-mask-image: radial-gradient(ellipse 46% 50% at center 40%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 80%, transparent 100%);
+  mask-image: radial-gradient(ellipse 46% 50% at center 40%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 80%, transparent 100%);
   pointer-events: none;
 }
-.dark .divine-bapu { opacity: 0.5; mix-blend-mode: normal; }
+.dark .divine-bapu { opacity: 0.75; mix-blend-mode: normal; }
 
 /* ============ Golden dust drifting in place ============ */
 .divine-dust { position: absolute; inset: 0; pointer-events: none; }
