@@ -119,9 +119,61 @@
   .parchment {
     background: hsl(var(--parchment));
     color: hsl(var(--parchment-foreground));
-    border: 1px solid hsl(var(--border));
-    box-shadow: var(--shadow-card);
-    border-radius: calc(var(--radius) + 2px);
+    border: none;
+    box-shadow:
+      0 4px 24px hsl(25 60% 20% / 0.25),
+      0 1px 4px hsl(25 60% 20% / 0.15),
+      inset 0 0 60px hsl(35 50% 70% / 0.3);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    /* Aged paper texture via layered gradients */
+    background-image:
+      radial-gradient(ellipse at 20% 15%, hsl(35 55% 82% / 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 85%, hsl(30 45% 75% / 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, hsl(38 60% 90%) 0%, hsl(33 50% 85%) 100%);
+    background-color: hsl(var(--parchment));
+    /* Torn / burned edge effect via clip-path */
+    -webkit-mask-image:
+      radial-gradient(ellipse 99% 99% at 50% 50%, black 97%, transparent 100%);
+    mask-image:
+      radial-gradient(ellipse 99% 99% at 50% 50%, black 97%, transparent 100%);
+    /* 3D tilt feel */
+    transform: perspective(1200px) rotateX(1deg);
+    transform-origin: center top;
+  }
+  .parchment::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    /* Torn edge shadows on all sides */
+    box-shadow:
+      inset 8px 0 12px -6px hsl(25 50% 40% / 0.2),
+      inset -8px 0 12px -6px hsl(25 50% 40% / 0.2),
+      inset 0 8px 12px -6px hsl(25 50% 40% / 0.15),
+      inset 0 -8px 16px -6px hsl(25 50% 40% / 0.25);
+    border-radius: 4px;
+  }
+  .parchment::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    pointer-events: none;
+    z-index: 1;
+    /* Irregular torn edge using layered radial gradients */
+    background:
+      radial-gradient(ellipse at 0% 20%, hsl(30 40% 30% / 0.12) 0%, transparent 8px),
+      radial-gradient(ellipse at 100% 40%, hsl(30 40% 30% / 0.1) 0%, transparent 10px),
+      radial-gradient(ellipse at 30% 0%, hsl(30 40% 30% / 0.08) 0%, transparent 6px),
+      radial-gradient(ellipse at 70% 100%, hsl(30 40% 30% / 0.14) 0%, transparent 12px),
+      radial-gradient(ellipse at 5% 80%, hsl(30 40% 30% / 0.1) 0%, transparent 7px),
+      radial-gradient(ellipse at 95% 10%, hsl(30 40% 30% / 0.09) 0%, transparent 9px);
+  }
+  .parchment > * {
+    position: relative;
+    z-index: 2;
   }
   .glass {
     background: hsl(var(--card) / 0.65);
