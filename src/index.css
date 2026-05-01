@@ -445,6 +445,36 @@
   .arc-shimmer::after { animation: none; }
 }
 
+/* ============ 3D Devotional Effects ============ */
+@keyframes aura-ring {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%      { transform: scale(1.25); opacity: 0; }
+}
+@keyframes divine-float {
+  0%, 100% { transform: translateY(0) rotateX(2deg); }
+  50%      { transform: translateY(-6px) rotateX(-2deg); }
+}
+@keyframes divine-glow-pulse {
+  0%, 100% { text-shadow: 0 0 12px hsl(45 100% 65% / 0.4), 0 6px 12px hsl(20 70% 15% / 0.55); filter: drop-shadow(0 0 6px hsl(45 100% 60% / 0.35)); }
+  50%      { text-shadow: 0 0 28px hsl(45 100% 65% / 0.7), 0 6px 12px hsl(20 70% 15% / 0.55); filter: drop-shadow(0 0 14px hsl(45 100% 60% / 0.55)); }
+}
+.brand-3d {
+  animation: divine-float 5s ease-in-out infinite;
+  perspective: 600px;
+}
+.brand-3d__text {
+  animation: divine-glow-pulse 4s ease-in-out infinite;
+}
+/* 3D depth on icon hover */
+.icon-3d__face {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backface-visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-3d { animation: none; }
+  .brand-3d__text { animation: none; }
+}
+
 /* ============ Brand wordmark — 3D calligraphy ============ */
 .brand-3d { position: relative; isolation: isolate; }
 .brand-3d__text {
@@ -692,4 +722,39 @@
     radial-gradient(35% 28% at 80% 24%, hsl(280 85% 60% / 0.32), transparent 70%),
     radial-gradient(50% 40% at 55% 80%, hsl(45 95% 60% / 0.32), transparent 70%);
   opacity: 0.85;
+}
+
+/* ============ Devotional 3D Orb (floating Om) ============ */
+.divine-orb {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  width: min(30vmin, 180px);
+  height: min(30vmin, 180px);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, hsl(45 100% 85% / 0.9), hsl(35 90% 55% / 0.4) 45%, transparent 70%),
+    radial-gradient(circle at 65% 70%, hsl(25 80% 45% / 0.3), transparent 60%);
+  box-shadow:
+    0 0 60px hsl(45 100% 65% / 0.35),
+    0 0 120px hsl(45 100% 60% / 0.15),
+    inset 0 -20px 40px hsl(20 70% 20% / 0.4),
+    inset 0 10px 20px hsl(45 100% 90% / 0.5);
+  animation: orb-float 8s ease-in-out infinite, orb-glow 4s ease-in-out infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+}
+.dark .divine-orb { opacity: 0.25; }
+@keyframes orb-float {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  50%      { transform: translateX(-50%) translateY(-12px) scale(1.04); }
+}
+@keyframes orb-glow {
+  0%, 100% { box-shadow: 0 0 60px hsl(45 100% 65% / 0.35), 0 0 120px hsl(45 100% 60% / 0.15), inset 0 -20px 40px hsl(20 70% 20% / 0.4), inset 0 10px 20px hsl(45 100% 90% / 0.5); }
+  50%      { box-shadow: 0 0 80px hsl(45 100% 65% / 0.55), 0 0 160px hsl(45 100% 60% / 0.25), inset 0 -20px 40px hsl(20 70% 20% / 0.4), inset 0 10px 20px hsl(45 100% 90% / 0.6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .divine-orb { animation: none; }
 }

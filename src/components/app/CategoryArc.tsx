@@ -5,6 +5,13 @@ import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { vibrate } from "@/lib/chime";
 
+const AuraRing = () => (
+  <span className="absolute inset-[-6px] rounded-full pointer-events-none" aria-hidden>
+    <span className="absolute inset-0 rounded-full animate-[aura-ring_2.4s_ease-in-out_infinite] border-2 border-amber-400/40" />
+    <span className="absolute inset-[-3px] rounded-full animate-[aura-ring_2.4s_ease-in-out_infinite_0.6s] border border-amber-300/20" />
+  </span>
+);
+
 type Cat = {
   id: string;
   label: string;
@@ -69,7 +76,7 @@ export const CategoryArc = () => {
   const step = 22;    // degrees between items
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ perspective: "800px" }}>
       {/* Arc of icons */}
       <div
         className="relative mx-auto h-[92px] w-full touch-pan-y select-none"
@@ -99,6 +106,8 @@ export const CategoryArc = () => {
 
           const Icon = c.icon;
           const isActive = abs === 0;
+          const rotateY = d * 12;
+          const rotateX = abs === 0 ? 0 : -8;
 
           return (
             <button
@@ -115,13 +124,18 @@ export const CategoryArc = () => {
                 "transition-all duration-300 ease-out"
               )}
               style={{
-                transform: `translate(calc(-50% + ${x}px), ${y}px) scale(${scale})`,
+                transform: `translate(calc(-50% + ${x}px), ${y}px) scale(${scale}) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`,
+                transformStyle: "preserve-3d",
                 opacity,
                 zIndex: z,
               }}
             >
-              <span className="icon-3d__face grid h-9 w-9 place-items-center rounded-2xl">
+              <span className={cn(
+                "icon-3d__face relative grid h-9 w-9 place-items-center rounded-2xl transition-all duration-300",
+                isActive && "shadow-[0_0_24px_hsl(45_100%_60%/0.6),0_0_48px_hsl(45_100%_60%/0.25)] scale-110"
+              )}>
                 <Icon className="h-3.5 w-3.5" strokeWidth={1.6} />
+                {isActive && <AuraRing />}
               </span>
               <span
                 className={cn(
