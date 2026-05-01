@@ -815,7 +815,215 @@ export const stotras: Stotra[] = [
       },
       {
         dev: "सुनहु मातु मोहि अतिसय भूखा । लागि देखि सुंदर फल रूखा ॥\nसुनु सुत करहिं बिपिन रखवारी । परम सुभट रजनीचर भारी ॥१०१॥",
-        en: "Chaupai 101 — 'Hear, mother — seeing these lovely fruit-laden trees I am very hungry.' (Sita:) 'Hear, son — mighty demon warriors guard this grove.' [Continued in the next section…]",
+        en: "Chaupai 101 — 'Hear, mother — seeing these lovely fruit-laden trees I am very hungry.' (Sita:) 'Hear, son — mighty demon warriors guard this grove.'",
+      },
+      {
+        dev: "दोहा ३३ - देखि बुद्धि बल निपुन कपि कहेउ जानकीं जाहु। रघुपति चरन ह्रदयं धरि तात मधुर फल खाहु॥",
+        en: "Finding the monkey proficient in intelligence and strength, Janaki said, \'Go, and keeping the feet of Lord Rama in your heart, eat the sweet fruits.\'",
+      },
+      {
+        dev: "चौपाई: चलेउ नाइ सिरु पैठेउ बागा। फल खाएसि तरु तोरैं लागा॥ रहे रच्छक बहु करत रखवारी। कछु मारेसि कछु जाइ पुकारी॥ नाथ एक आवा कपि भारी। तेहिं असोक बाटिका उजारी॥ खाएसि फल अरु बिटप उपारे। रच्छक मर्दि मर्दि महि डारे॥ सुनि रावन पठए भट नाना। तिन्हहि देखि गर्जेउ हनुमाना॥ सब रजनीचर कपि संघारे। गए पुकारत कछु अधमारे॥ पुनि पठयउ तेहिं अच्छकुमारा। चला संग लै सुभट अपारा॥ आवत देखि बिटप गहि तर्जा। ताहि निपाति महाधुनि गर्जा॥",
+        en: "Hanuman bowed his head and entered the garden. He ate the fruits and began breaking the trees. He killed some guards; others fled crying for help, reporting that a huge monkey had destroyed the Ashoka grove. Ravana sent many warriors; Hanuman slaughtered them, and then killed Prince Akshaya.",
+      },
+      {
+        dev: "दोहा ३४ - कछु मारे कछु मर्दित कछु मिलि गए पुकार। प्रभु कोउ एक महाकपि आवा बहुत निपाते मार॥",
+        en: "Some were killed, some crushed, and some fled back crying: \'Lord, a great monkey has arrived and slaughtered many of our warriors!\'",
+      },
+      {
+        dev: "चौपाई: मुनि सुत बध लंकेस रिसाना। पठयउ मेघनाद बलवाना॥ मारसि जनि सुत बाँधेसु ताही। देखिअ कपिहि कहाँ कर आही॥ चला इंद्रजित अतुलित जोधा। बंधु निधन सुनि उपजा क्रोधा॥ कपि देखा दारुन भट आवा। कटकटाइ गर्जा अरु धावा॥",
+        en: "Hearing of his son\'s death, Ravana sent the mighty Meghnad (Indrajit). He commanded him to bind the monkey instead of killing him. Indrajit set out in great fury to face Hanuman.",
+      },
+      {
+        dev: "दोहा ३५ - ब्रह्म अस्त्र तेहिं सांधा कपि मन कीन्ह बिचार। जौं न ब्रह्मसर मानउँ महिमा मिटइ अपार॥",
+        en: "Indrajit released the Brahmastra. Hanuman thought, \'If I do not submit to the Brahma-missile, its immense glory will be diminished.\'",
+      },
+      {
+        dev: "चौपाई: ब्रह्मबान कपि कहुँ तेहिं मारा। परतिहुँ बार कटकु संघारा॥ तेहिं देखा कपि मुरुछित भयऊ। नागपास बाँधिसि लै गयऊ॥ जासु नाम जपि सुनहु भवानी। भव बंधन काटहिं नर ग्यानी॥ तासु दूत की बंधु तरुआवा। प्रभु कारज लगि कपिहिं बंधावा॥ कपि बंधन सुनि निसिचर धाए। कौतुक लागि सभाँ सब आए॥",
+        en: "The missile struck Hanuman, but even as he fell, he crushed more soldiers. Indrajit bound him with the Noose of Serpents. Hanuman, the messenger of Him whose name cuts all worldly bonds, allowed himself to be bound for the Lord\'s service.",
+      },
+      {
+        dev: "दोहा ३६ - कपि देखा दसकंधर बिहसा मुहुँक मुसुकाइ। बैठि सभाँ अति सोह प्रभु उपबन तोरन जाइ॥",
+        en: "Hanuman saw the ten-headed Ravana, who smiled mockingly. Ravana sat in his court in great splendor as the monkey was brought in.",
+      },
+      {
+        dev: "चौपाई: कपिहि बिलोकि दसानन बिहसा। कहि दुर्बाद तासु मति रदसा॥ कहहु कीस केहिं बल तू आवा। कीन्हि बाटिका भंग बनावा॥ खायेसि फल अरु रच्छक मारे। अपुनो जानु डर हृदयँ न धारे॥ रे सठ सुनु तोहि दंड कठोर। मारब सत्य कहहु मति भोर॥",
+        en: "Ravana mocked Hanuman and asked: \'By whose strength have you come? Why did you destroy the grove and kill the guards? Do you not fear for your life? You shall be severely punished.\'",
+      },
+      {
+        dev: "दोहा ३७ - राम नमामि कामदं सुखदं। बिहसि कह्यो कपि सुनु रावन। जानु राम बल अमित अतुलित निज मन॥",
+        en: "Hanuman smiled and said: \'Listen, Ravana. Know the immeasurable and incomparable power of Rama, by whose grace the world is created, preserved, and destroyed.\'",
+      },
+      {
+        dev: "चौपाई: जाके बल बिरंचि हरि ईसा। पालत सृजत हरत दससीसा॥ जा बल सीस धरत सहसानन। अंड कोस समेत गिरि कानन॥ जा बल देह धरेहुँ जोइ सोई। पुनि पुनि जपै न मानसि कोई॥ मोहि पठयउ रघुपति कहुँ नाथा। तव हित कछु कहिहउँ जोरिहाथा॥ सुनहु दसानन तजि अभिमाना। भजहु राम रघुबीर सुजाना॥",
+        en: "Hanuman explained the glory of Rama and advised Ravana to abandon his pride and surrender to the Lord to save his kingdom.",
+      },
+      {
+        dev: "दोहा ३८ - सजल नयन बिनती करहुँ। सुनहु रावन मोरा। तजहु मान मद मोह तजि। भजहु राम रघुकुल के चोरा॥",
+        en: "With eyes full of tears (of devotion), Hanuman pleaded: \'Listen Ravana! Abandon vanity and attachment, and worship Rama, the jewel of the Raghu race.\'",
+      },
+      {
+        dev: "चौपाई: सुनत बिहँसि बोला दसकंधर। मोह कहसि कछु सीख सयाना। पाइउँ कपि गुरु बड़ ग्यानी। कहसि मोहि अति नीत बखानी॥ मृत्यु निकट आई तोहि भारी। तब तौ कछु कहसि मोरा अधारी॥",
+        en: "Ravana laughed and said: \'I have found a very wise teacher in this monkey! Your death must be near, which is why you give me such lectures.\'",
+      },
+      {
+        dev: "दोहा ३९ - कहा बिभीषन नीति बिचारी। सुनहु नाथ बिनती कछु हमारी॥ दूत न बधइ कहहिं सब नीती। सपथ सुनावहिं प्रभु अति प्रीती॥",
+        en: "Vibhishana intervened and said: \'Lord, listen to my plea. All codes of ethics say a messenger should not be killed.\'",
+      },
+      {
+        dev: "चौपाई: सुनि बिभीषन बचन सुहावा। बिहँसि दसानन अति सुख पावा॥ कपि कहुँ दंड देइ कछु असई। तेहिं जिअत छाँड़िअ कहसि जसई॥ कपि ममता पूँछ पर अतिही। कहहु सत्य सब निजर चरतिही॥ तेल बोरि पटु बाँधिहु पूँछहि। पावक देहु लगाइ सठ पूँछहि॥",
+        en: "Ravana agreed not to kill him but decided to punish him. \'A monkey loves his tail most,\' he said. \'Wrap his tail in cloths soaked in oil and set it on fire.\'",
+      },
+      {
+        dev: "दोहा ४० - रहा न नगर बसन घृत तेला। बाढ़ी पूँछ कीन्ह कपि खेला॥ कौतुक कहँ आए पुरवासी। मारहिं चरन करहिं बहु हाँसी॥",
+        en: "There was no cloth or oil left in the city as Hanuman’s tail grew longer and longer. The citizens came to watch the sport, kicking and mocking him.",
+      },
+      {
+        dev: "चौपाई: पावकु जरत देखि हनुमाना। भयउ परम लघु रूप निधाना॥ कनक कोटि ऊपर चढ़ि धावा। लंका नगरि सकल जरलावा॥ उलटि पलटि लंका सब जारी। कूदि परा पुनि सिंधु मझारी॥",
+        en: "Seeing the fire, Hanuman assumed a tiny form, slipped his bonds, then grew huge and leapt onto the golden rooftops. He set the entire city of Lanka ablaze, then jumped into the ocean to extinguish his tail.",
+      },
+      {
+        dev: "दोहा ४१ - लंका दहि पुनि सिंधु महुँ। कीन्हो कपि अस काजु। जाइ जानकीहि सुनायउ। आयउ प्रभु के पाजु॥",
+        en: "Having burnt Lanka and dipped his tail in the sea, Hanuman went back to see Janaki once more before returning to Lord Rama.",
+      },
+      {
+        dev: "चौपाई: मात मोहि दीजै कछु चीन्हा। जैसे रघुनायक मोहि दीन्हा॥ चूड़ामनि उतारि तब दयऊ। हरष समेत पवनसुत लयऊ॥ कहहु तात मोर प्रनामु बारहिं बारा। प्रीति सहित प्रभु चरन पधारा॥ जेहि बिधि बेगि आवहिं रघुराई। सोइ जतन करहु तुम भाई॥",
+        en: "He asked Sita for a token. She gave him her head-jewel (Chudamani). Hanuman bowed to her, and she urged him to tell Rama to rescue her quickly.",
+      },
+      {
+        dev: "दोहा ४२ - जनकसुता समुझाय करि। बहु बिधि धीरज दीन्ह। चरन कमल सिरु नाइ कपि। गवनु राम पहिं कीन्ह॥",
+        en: "Consoleing Sita and giving her hope in many ways, Hanuman bowed at her lotus feet and started his journey back to Rama.",
+      },
+      {
+        dev: "चौपाई: चलेउ बेगि मारुतसुत आवा। गर्जउ सिंधु जलधि लहरावा॥ कपिन्ह देखि सब हरष अपारा। आए सब मिलि पवनकुमारा॥ मिलेउ सकल भयउ हरष बिसेखा। रामदूत कहँ सब देखि विशेखा॥ हँसि सब पूछहिं कुसल सुबानी। कहि कछु रामदूत मुति मानी॥",
+        en: "Hanuman crossed back over the ocean. The monkeys on the shore were overjoyed to see him. They all embraced and asked about his well-being and the success of his mission.",
+      },
+      {
+        dev: "दोहा ४३ - जामवंत कह सुनु हनुमाना। कहहु तात जेहि बिधि सिधि बाना॥",
+        en: "Jambavan said: \'Listen Hanuman, tell us how you achieved such success.\'",
+      },
+      {
+        dev: "चौपाई: तब हनुमन्त कही सब बाता। जेहि बिधि गयउ देखि जगमाता॥ मुदित भए सब सुनत कहानी। प्रभु पहिं चले सकल कपि ज्ञानी॥ आए मधुबन जहाँ सुग्रीवा। कहि जय राम भयउ अति जीवा॥",
+        en: "Hanuman told the whole story. The monkeys then proceeded to Lord Rama, stopping at the Madhuban garden of Sugriva, celebrating their success.",
+      },
+      {
+        dev: "दोहा ४४ - मिले जाइ रघुबीरहि। कपिन्ह नवाए माथ। बरनि प्रेम आनंद मन। देखि सिआरि रघुनाथ॥",
+        en: "They met Rama and bowed their heads. Rama looked at them with great love and joy.",
+      },
+      {
+        dev: "चौपाई: सुनु रघुबीर कहि हनुमाना। देखि आइ सीता बिधि नाना॥ निज मनि दीन्हि तात यह ताही। हियँ लाइ प्रभु प्रेम मगन पाही॥ कहा तात तव बिरह कृपाला। दिन कहँ सम सो जानु बिशाला॥",
+        en: "Hanuman said: \'O Lord, I have seen Sita. She has sent this jewel.\' Rama pressed the jewel to his heart. Hanuman described Sita\'s suffering and her constant devotion to Rama.",
+      },
+      {
+        dev: "दोहा ४५ - सुनत बचन मन हरष कछु। कहत राम मुसुकाइ। कपि देखि कछु न कहि सकइ। सजल नयन भरि आइ॥",
+        en: "Hearing these words, Rama felt both joy and sorrow; his eyes filled with tears, and he could hardly speak.",
+      },
+      {
+        dev: "चौपाई: सुनु कपि तोहि समान उपकारी। नहिं कोउ सुर नर मुनि तनुधारी॥ प्रति उपकार करौ का तोरा। सनमुख होइ न सकत मन मोरा॥ सुनु सुत उरिन मैं नहिं तोही। बार बार कहउँ अस टोही॥",
+        en: "Rama said: \'O Hanuman, there is no one who has done me as much service as you. I can never repay my debt to you; I remain forever indebted.\'",
+      },
+      {
+        dev: "दोहा ४६ - सुनि प्रभु बचन पुलक अति। बिहँसि प्रेम मन माहिं। परेउ चरन गहि प्रेम बस। उठाइ लियो प्रभु पाहिं॥",
+        en: "Hearing the Lord\'s words, Hanuman was overwhelmed with emotion and fell at His feet. Rama lifted him and embraced him.",
+      },
+      {
+        dev: "चौपाई: पुनि प्रभु पूँछ कहहु किमि बाता। लंका दहन कहहु सब गाथा॥ कपि कह प्रभु सब तव प्रतापा। जो कछु कीन्ह न मोहि निज पापा॥ तासु प्रताप अनल तेहिं जारी। लंका नगरि सकल जरि डारी॥",
+        en: "The Lord asked about the burning of Lanka. Hanuman humbly replied: \'It was all by Your grace, Lord. Your glory was the fire that burnt the city.\'",
+      },
+      {
+        dev: "दोहा ४७ - अब प्रभु छाँड़ि कुतरक सब। सुमिरहु राम रघुबीर। जासु प्रसादा कपि दलु। जियँ जिता सब रन धीर॥",
+        en: "Now, abandoning all doubts, remember Lord Rama, by whose grace the monkey army shall win the battle.",
+      },
+      {
+        dev: "चौपाई: सुनि रघुनाथ सपथ तब कीन्हा। चलेउ कटक सुग्रीवहि दीन्हा॥ चले सकल कपि दलु हरषाना। गर्जहिं जय रघुबीर सुजाना॥ लंका अभिमुख कीन्ह पयाना। कटक चला अति अमित बिधाना॥",
+        en: "Rama gave the command to march. The vast monkey army set out towards Lanka, chanting \'Victory to Rama!\'",
+      },
+      {
+        dev: "दोहा ४८ - चलेउ रामु रघुकुल मनि। कपि कटक संगु बनाई। लंका ऊपर धावइ। गर्जत गरज सुनाई॥",
+        en: "Rama, the jewel of the Raghu clan, moved forward with the monkey host, their roars echoing as they marched upon Lanka.",
+      },
+      {
+        dev: "चौपाई: इहाँ दसानन सचिव सयाने। कीन्ह बिचारु जेहि बिधि हितु जाने॥ कहि नीति बिभीषन बहु बिधि बूझा। परिहरि मानु भजहु रघुसूझा॥ अनुज बचन सुनि दसानन जागा। मोह बसत पुनह क्रोधहि लागा॥",
+        en: "In Lanka, Vibhishana again advised Ravana to return Sita and seek Rama\'s protection, but Ravana, blinded by ego and delusion, became furious.",
+      },
+      {
+        dev: "दोहा ४९ - सुनि सुभ बचन बिभीषन केरा। कह सठ तोहि अभावन घेरा॥ जेहिं मारिउँ तेहि कै तू पच्छा। सठ जनि होउ काल कें बच्छा॥",
+        en: "Ravana said to Vibhishana: \'You fool, you take the side of my enemies! You are like a child of Death, speaking ill of your own brother.\'",
+      },
+      {
+        dev: "चौपाई: अस कहि दीन्हि चरन प्रहारा। अनुज गहे पद बारहिं बारा॥ तात पिता सम पूज्य तुम मोरे। जौं मारुहु तौ कछु न बस मोरे॥ जननी जनक बंधु सुत दारा। प्रभु बिनु सब दुख दायक उपकारा॥",
+        en: "Ravana kicked Vibhishana. Vibhishana said: \'You are like a father to me; you may strike me, but I tell you this for your own good—without Rama, everything is sorrowful.\'",
+      },
+      {
+        dev: "दोहा ५० - बिभीषनु तजि गयउ तब। आयउ रघुबर पास। राम कहि नाम पुकारत। गयउ प्रभु चरन निबास॥",
+        en: "Vibhishana left Ravana and went to seek refuge with Rama. Calling out Rama\'s name, he reached the Lord\'s feet.",
+      },
+      {
+        dev: "चौपाई: जबहिं राम कपिन्ह देखि आवा। बिभीषनु आवन सुनि हरषावा॥ मिलिहउँ जाइ बिभीषनु भाई। प्रभु कृत कृत्य भएउ मन आई॥ दीन्हि असीस राम अति प्रीती। कहा बिभीषन सुनि सब नीती॥",
+        en: "The monkeys saw Vibhishana coming. Rama welcomed him warmly. Vibhishana surrendered at Rama\'s feet, and the Lord embraced him, promising him protection.",
+      },
+      {
+        dev: "दोहा ५१ - प्रभु सन रच्छक पावइ। जो बिभीषनहिं दीन। ताहि राजु लंका तव। दीन्ह रामु प्रबीन॥",
+        en: "Rama anounted Vibhishana as the future King of Lanka, showing His grace to those who surrender to Him.",
+      },
+      {
+        dev: "चौपाई: पुनि कपिपतिहि कहा रघुराई। अब कीजिअ कोउ जतन उपाई॥ केहि बिधि तरिअ अगाध पथोधी। बिचारहु जाइ सब कपि क्रोधी॥ जामवंत कह सुनु रघुबीरा। सिन्धु तजिब अनुचित मति धीरा॥",
+        en: "Rama asked how they should cross the deep ocean. Jambavan suggested that since the ocean is Rama\'s ancestor, they should request the Sea-god for a passage.",
+      },
+      {
+        dev: "दोहा ५२ - विनय न मानत जलधि जड़। गए तीनि दिन बीति। बोले राम सकोप तब। भय बिनु होइ न प्रीति॥",
+        en: "Three days passed while Rama prayed, but the ocean did not respond. Rama then said angrily: \'There is no friendship without fear!\'",
+      },
+      {
+        dev: "चौपाई: लछिमन बान सरासन आनू। सोषौं वारिधि बिसिख कृसानू॥ सठ सन बिनय कुटिल सन प्रीती। सहज कृपन सन सुंदर नीती॥ ममता रति सन ग्यान कहानी। अति लोभी सन बिरति बखानी॥ क्रोधी सम समि कामिहि हरि कथा। ऊसर बीज बये फल जथा॥",
+        en: "Rama called for His bow to dry up the sea. He noted that preaching to a fool or showing love to the wicked is as futile as sowing seeds in barren land.",
+      },
+      {
+        dev: "दोहा ५३ - अस कहि रघुपति चाप चढ़ावा। पावक सायक संधितु धावा॥ मकर उरग झष गन अकुलाने। जरत जंतु जलनिधि जब जाने॥",
+        en: "Thus saying, Rama strung His bow. As the fiery arrow was unleashed, the creatures of the deep were filled with terror.",
+      },
+      {
+        dev: "चौपाई: कनक थार भरि मनि गन नाना। जलधि मिलन आयउ तजि माना॥ सभय सिन्धु गहि चरन पधारा। छमहु नाथ सब अपराध हमारा॥ मरजादा पुनि तुम्हारी कीन्ही। प्रभु अस्तुति करि प्रभुहिं चीन्ही॥",
+        en: "The Sea-god appeared, trembling with fear, offering jewels. He begged for forgiveness and reminded Rama that even the elements follow the laws of nature established by Him.",
+      },
+      {
+        dev: "दोहा ५४ - सकल चरित कहि प्रभुहिं सुनावा। नील नलहि कपि द्वौ भाई। तिन्हहि कहहु सेतु बनावहिं। तव परताप रघुराई॥",
+        en: "The Sea-god advised Rama: \'O Lord, Nala and Nila have the skill to build a bridge. By Your grace, the stones will float.\'",
+      },
+      {
+        dev: "चौपाई: अस कहि गयउ जलधि निज धामा। रघुबीरहि न कहि कछु नामा॥ नली नील कीन्हि सुनि बाता। सेतु बंधु कीन्हि हरि हरषाता॥ जेहि जेहि गिरि कपि डारहिं आनी। सो सो सब तरु रहहिं समानी॥",
+        en: "The Sea-god returned to his abode. Under the direction of Nala and Nila, the monkeys began building the bridge. Whatever boulders they threw into the sea stayed afloat by Rama\'s power.",
+      },
+      {
+        dev: "दोहा ५५ - श्रीरघुबीर प्रताप ते। सिन्धु बँधायउ सेतु। कौतुक देखन अमित सब। सुर नर मुनि जन हेतु॥",
+        en: "By the glory of Lord Rama, a bridge was built across the ocean—a marvel for gods, men, and sages to witness.",
+      },
+      {
+        dev: "चौपाई: सकल कटकु कपि उतरे पारा। राम बिलोकि अति हरष अपारा॥ लंका ऊपर कीन्ह पयाना। कटक चला अति अमित बिधाना॥ राम चरित जे गावहिं सुनहीं। ते तौ परम पद पावहिं गुनहीं॥",
+        en: "The entire monkey army crossed the ocean. Rama was overjoyed. They marched toward Lanka. Those who sing or hear the glories of Rama attain the supreme state.",
+      },
+      {
+        dev: "दोहा ५६ - सकल सुमंगल दायक। रघुनायक गुन गान। सादर सुनहिं जे नर। तरहिं भव सिंधु सुजान॥",
+        en: "The praises of the Lord of the Raghus grant all auspicious blessings. Those who listen with reverence cross the ocean of worldly existence.",
+      },
+      {
+        dev: "चौपाई: सुनि सुभ चरित मानु अनुरागा। राम चरन रति अति बड़भागा॥ जहँ जहँ राम चरित सुभ होई। सादर सुनहिं सुबुध जन सोई॥ मंगल भवन अमंगल हारी। द्रवहु सुदसरथ अजिर बिहारी॥",
+        en: "Listen to this sacred story with love. Devotion to Rama\'s feet is the greatest fortune. May the Lord, the abode of bliss and destroyer of woes, be pleased.",
+      },
+      {
+        dev: "दोहा ५७ - सुनि प्रभु गुनगन हरष अति। निज मन करि बिस्वास। तुलसीदास हरि चरन भजु। तजि सब बिषय निवास॥",
+        en: "Tulsidas says: \'Hearing the Lord\'s glories, fill your heart with faith. Worship the feet of Hari and abandon the dwelling of worldly desires.\'",
+      },
+      {
+        dev: "दोहा ५८ - जासु नाम जपि सुनहु भवानी। भव बंधन काटहिं नर ग्यानी॥ सोइ प्रभु सोई राम कृपाला। भजहु सदा तजि दोष बिशाला॥",
+        en: "Lord Shiva says: \'O Bhavani, listen! By chanting His name, even the wise cut the bonds of birth and death. Worship that same compassionate Rama always.\'",
+      },
+      {
+        dev: "दोहा ५९ - सकल कामना हीन सठ। जे भजहिं रघुबीर। ते कछु दुर्लभ कहि न सकि। सुनि मुनि मति धीर॥",
+        en: "Even those without any desires who worship Rama find nothing impossible to achieve. Listen to this, O wise sage.",
+      },
+      {
+        dev: "दोहा ६० - संबत सोरह सै इक्यावन। करउँ कथा हरि पद धरि ध्यान। हनुमान चालीसा सम सुभ। सुन्दरकाण्ड सुनि सकल जग जान॥ (इति श्रीमद्रामचरितमानसे सकलकलुषविध्वंसने पञ्चमः सोपानः सुन्दरकाण्डः समाप्तः)",
+        en: "Placing the feet of Lord Rama in the heart, this story is told. Thus ends the Sundarkand, the fifth book of Shri Ramcharitmanas, which destroys all sins.",
       },
     ],
   },
