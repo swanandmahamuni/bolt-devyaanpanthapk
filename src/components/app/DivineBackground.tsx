@@ -49,6 +49,7 @@ export const DivineBackground = () => {
       <div className="divine-mandala" />
       <div className="divine-flare divine-flare--a" />
       <div className="divine-flare divine-flare--b" />
+      <div className="divine-orb" />
       <div className="divine-dust">
         {dust.map((p, i) => (
           <span
