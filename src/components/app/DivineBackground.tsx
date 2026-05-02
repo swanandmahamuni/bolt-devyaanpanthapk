@@ -3,7 +3,7 @@ import bapuImg from "@/assets/bapu.webp";
 
 const VARIANTS = ["", "divine-bg--lotus", "divine-bg--temple", "divine-bg--cosmos"];
 
-export const DivineBackground = () => {
+export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
   // Pick a variant once per session so it stays stable while the user navigates
   const variant = useMemo(() => {
     if (typeof window === "undefined") return "";
@@ -37,7 +37,7 @@ export const DivineBackground = () => {
     []
   );
   return (
-    <div className={`divine-bg ${variant}`} aria-hidden>
+    <div className={`divine-bg ${variant} ${stable ? "divine-bg--stable" : ""}`} aria-hidden>
       <div className="divine-nebula" />
       <div className="divine-nebula divine-nebula--alt" />
       {/* Bapu portrait blended softly into the background */}

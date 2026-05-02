@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Heart, Languages } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
@@ -12,11 +12,8 @@ const Reader = () => {
   const nav = useNavigate();
   const stotra = stotras.find((s) => s.id === id);
   const [script, setScript] = useLocalStorage<"dev" | "en" | "both">("reader.script", "both");
-  const [zoom, setZoom] = useLocalStorage<number>("reader.zoom", 1);
   const [favs, setFavs] = useLocalStorage<string[]>("favorites", []);
   const [recent, setRecent] = useLocalStorage<string[]>("recent.read", []);
-  const pinchRef = useRef<{ startDist: number; startZoom: number } | null>(null);
-  const [liveZoom, setLiveZoom] = useState<number | null>(null);
 
   useEffect(() => {
     if (!stotra) return;
@@ -37,43 +34,15 @@ const Reader = () => {
   }
 
   const isFav = favs.includes(stotra.id);
-  const effectiveZoom = liveZoom ?? zoom;
   const baseSize = 22;
-  const fontSize = Math.round(baseSize * effectiveZoom);
+  const fontSize = baseSize;
 
   const cycleScript = () =>
     setScript(script === "both" ? "dev" : script === "dev" ? "en" : "both");
 
-  // Pinch-to-zoom on the reading surface
-  const dist = (touches: React.TouchList) => {
-    const a = touches[0], b = touches[1];
-    const dx = a.clientX - b.clientX, dy = a.clientY - b.clientY;
-    return Math.hypot(dx, dy);
-  };
-  const onTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 2) {
-      pinchRef.current = { startDist: dist(e.touches), startZoom: zoom };
-    }
-  };
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (e.touches.length === 2 && pinchRef.current) {
-      e.preventDefault();
-      const ratio = dist(e.touches) / pinchRef.current.startDist;
-      const next = Math.min(2.4, Math.max(0.7, pinchRef.current.startZoom * ratio));
-      setLiveZoom(next);
-    }
-  };
-  const onTouchEnd = () => {
-    if (liveZoom != null) {
-      setZoom(liveZoom);
-      setLiveZoom(null);
-    }
-    pinchRef.current = null;
-  };
-
   return (
     <>
-      <DivineBackground />
+      <DivineBackground stable />
       <AppShell>
         <div className="-mx-1 mb-3 flex items-center justify-between">
           <button onClick={() => nav(-1)} className="rounded-full bg-card/70 p-2 backdrop-blur">
@@ -101,11 +70,7 @@ const Reader = () => {
         </div>
 
         <div
-          className="parchment touch-pan-y p-5 sm:p-6"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-          onTouchCancel={onTouchEnd}
+          className="parchment p-5 sm:p-6"
         >
           <div className="text-xs uppercase tracking-wider text-primary">
             {stotra.deity} · {stotra.category}
@@ -130,7 +95,7 @@ const Reader = () => {
 {v.dev}
                   </pre>
                 )}
-                {(script === "en" || script === "both") && (
+                {(script === "en" || script === "both") && v.en.trim() && (
                   <pre
                     className={cn(
                       "font-display whitespace-pre-wrap font-semibold leading-relaxed text-foreground/75",
