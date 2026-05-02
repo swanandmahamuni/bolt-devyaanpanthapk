@@ -138,8 +138,7 @@
       radial-gradient(ellipse 99% 99% at 50% 50%, black 97%, transparent 100%);
     mask-image:
       radial-gradient(ellipse 99% 99% at 50% 50%, black 97%, transparent 100%);
-    /* 3D tilt feel */
-    transform: perspective(1200px) rotateX(1deg);
+    transform: none;
     transform-origin: center top;
   }
   .parchment::before {
@@ -314,6 +313,12 @@
   animation-direction: alternate-reverse;
   filter: blur(60px) saturate(140%);
   opacity: 0.35;
+}
+.divine-bg--stable .divine-nebula,
+.divine-bg--stable .divine-flare,
+.divine-bg--stable .divine-orb,
+.divine-bg--stable .divine-mandala {
+  animation: none;
 }
 
 .divine-noise {
