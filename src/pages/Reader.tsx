@@ -95,7 +95,7 @@ const Reader = () => {
 {v.dev}
                   </pre>
                 )}
-                {(script === "en" || script === "both") && (
+                {(script === "en" || script === "both") && v.en.trim() && (
                   <pre
                     className={cn(
                       "font-display whitespace-pre-wrap font-semibold leading-relaxed text-foreground/75",
