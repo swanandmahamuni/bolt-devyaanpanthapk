@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RotateCcw, Check, Flame, Trophy } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
 import { useLocalStorage, todayKey } from "@/lib/storage";
-import { playChime, vibrate } from "@/lib/chime";
+import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
+import chimeMp3 from "@/assets/hariom-chime.mp3";
 
 const presets = [54, 108, 1008];
 
@@ -17,6 +18,10 @@ const Jaap = () => {
     days: 0,
   });
   const [tap, setTap] = useState(false);
+
+  useEffect(() => {
+    setChimeAudioSrc(chimeMp3);
+  }, []);
 
   const progress = Math.min(100, (count / target) * 100);
 
@@ -33,12 +38,12 @@ const Jaap = () => {
       const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
       setStreak({ last: d, days: streak.last === yesterday ? streak.days + 1 : 1 });
     }
-    if (next % 108 === 0) {
-      playChime();
-      vibrate([40, 60, 40]);
+    if (next % 54 === 0) {
+      playDevotionalChime();
+      vibrate([60, 80, 60]);
     }
     if (next === target) {
-      playChime();
+      playDevotionalChime();
       vibrate([60, 80, 60, 80, 100]);
     }
   };
