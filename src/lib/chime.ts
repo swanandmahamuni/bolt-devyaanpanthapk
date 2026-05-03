@@ -1,4 +1,29 @@
 let ctx: AudioContext | null = null;
+
+let chimeAudio: HTMLAudioElement | null = null;
+
+export function playDevotionalChime() {
+  try {
+    if (typeof window === "undefined") return;
+    if (!chimeAudio) {
+      // Dynamic import of the mp3 asset
+      chimeAudio = new Audio();
+      // We'll set src lazily on first call
+    }
+    // Reset and play
+    chimeAudio.currentTime = 0;
+    chimeAudio.play().catch(() => {});
+  } catch {}
+}
+
+export function setChimeAudioSrc(src: string) {
+  if (!chimeAudio) {
+    chimeAudio = new Audio();
+  }
+  chimeAudio.src = src;
+  chimeAudio.load();
+}
+
 export function playChime() {
   try {
     if (typeof window === "undefined") return;
