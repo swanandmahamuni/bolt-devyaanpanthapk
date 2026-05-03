@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocalStorage, todayKey } from "@/lib/storage";
-import { playChime, vibrate } from "@/lib/chime";
+import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
 import rudrakshaImg from "@/assets/rudraksha-clean.png";
+import chimeMp3 from "@/assets/hariom-chime.mp3";
 
 // Convert Western digits to Devanagari numerals
 const DEV_DIGITS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
@@ -51,6 +52,11 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     pointerId: number;
   } | null>(null);
 
+  // Preload the devotional MP3
+  useEffect(() => {
+    setChimeAudioSrc(chimeMp3);
+  }, []);
+
   // Tick the timer once per second while running
   useEffect(() => {
     if (!running) return;
@@ -74,8 +80,8 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     vibrate(12);
     setPulse(true);
     setTimeout(() => setPulse(false), 220);
-    if (next % 108 === 0) {
-      playChime();
+    if (next % 54 === 0) {
+      playDevotionalChime();
       vibrate([40, 60, 40]);
     }
   };

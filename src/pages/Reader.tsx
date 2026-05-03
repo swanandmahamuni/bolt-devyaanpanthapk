@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Heart, Languages } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
@@ -14,12 +14,38 @@ const Reader = () => {
   const [script, setScript] = useLocalStorage<"dev" | "en" | "both">("reader.script", "both");
   const [favs, setFavs] = useLocalStorage<string[]>("favorites", []);
   const [recent, setRecent] = useLocalStorage<string[]>("recent.read", []);
+  const [fontSize, setFontSize] = useState(22);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pinchRef = useRef<{ startDist: number; startSize: number } | null>(null);
 
   useEffect(() => {
     if (!stotra) return;
     setRecent([stotra.id, ...recent.filter((x) => x !== stotra.id)].slice(0, 8));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stotra?.id]);
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      pinchRef.current = { startDist: Math.hypot(dx, dy), startSize: fontSize };
+    }
+  }, [fontSize]);
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 2 && pinchRef.current) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.hypot(dx, dy);
+      const scale = dist / pinchRef.current.startDist;
+      const newSize = Math.round(Math.min(48, Math.max(14, pinchRef.current.startSize * scale)));
+      setFontSize(newSize);
+    }
+  }, []);
+
+  const onTouchEnd = useCallback(() => {
+    pinchRef.current = null;
+  }, []);
 
   if (!stotra) {
     return (
@@ -34,9 +60,6 @@ const Reader = () => {
   }
 
   const isFav = favs.includes(stotra.id);
-  const baseSize = 22;
-  const fontSize = baseSize;
-
   const cycleScript = () =>
     setScript(script === "both" ? "dev" : script === "dev" ? "en" : "both");
 
@@ -71,6 +94,11 @@ const Reader = () => {
 
         <div
           className="parchment p-5 sm:p-6"
+          ref={containerRef}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          style={{ touchAction: "pan-y" }}
         >
           <div className="text-xs uppercase tracking-wider text-primary">
             {stotra.deity} · {stotra.category}
@@ -81,6 +109,15 @@ const Reader = () => {
 
           <div className="mt-5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
+          {/* Font size indicator — visible during pinch */}
+          {pinchRef.current !== null && (
+            <div className="pointer-events-none fixed inset-x-0 top-20 z-50 flex justify-center">
+              <span className="rounded-full bg-black/60 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                {fontSize}px
+              </span>
+            </div>
+          )}
+
           <div className="mt-5 space-y-7">
             {stotra.verses.map((v, i) => (
               <div key={i} className="relative">
@@ -89,7 +126,7 @@ const Reader = () => {
                 </div>
                 {(script === "dev" || script === "both") && (
                   <pre
-                    className="font-devanagari whitespace-pre-wrap font-semibold leading-[1.9] text-foreground"
+                    className="font-devanagari whitespace-pre-wrap font-semibold leading-[1.9] text-parchment-foreground"
                     style={{ fontSize: `${fontSize}px` }}
                   >
 {v.dev}
@@ -98,7 +135,7 @@ const Reader = () => {
                 {(script === "en" || script === "both") && v.en.trim() && (
                   <pre
                     className={cn(
-                      "font-display whitespace-pre-wrap font-semibold leading-relaxed text-foreground/75",
+                      "font-display whitespace-pre-wrap font-semibold leading-relaxed text-parchment-foreground/75",
                       script === "both" && "mt-2"
                     )}
                     style={{ fontSize: `${Math.max(13, fontSize - 4)}px` }}
