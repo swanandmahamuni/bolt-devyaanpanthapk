@@ -83,9 +83,6 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     if (next % 54 === 0) {
       playDevotionalChime();
       vibrate([40, 60, 40]);
-    } else if (next % 108 === 0) {
-      playDevotionalChime();
-      vibrate([40, 60, 40]);
     }
   };
 
