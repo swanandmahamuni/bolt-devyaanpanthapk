@@ -109,6 +109,15 @@ const Reader = () => {
 
           <div className="mt-5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
+          {/* Font size indicator — visible during pinch */}
+          {pinchRef.current !== null && (
+            <div className="pointer-events-none fixed inset-x-0 top-20 z-50 flex justify-center">
+              <span className="rounded-full bg-black/60 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                {fontSize}px
+              </span>
+            </div>
+          )}
+
           <div className="mt-5 space-y-7">
             {stotra.verses.map((v, i) => (
               <div key={i} className="relative">
