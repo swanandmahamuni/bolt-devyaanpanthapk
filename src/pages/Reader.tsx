@@ -15,6 +15,7 @@ const Reader = () => {
   const [favs, setFavs] = useLocalStorage<string[]>("favorites", []);
   const [recent, setRecent] = useLocalStorage<string[]>("recent.read", []);
   const [fontSize, setFontSize] = useState(22);
+  const [isPinching, setIsPinching] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pinchRef = useRef<{ startDist: number; startSize: number } | null>(null);
 
@@ -29,6 +30,7 @@ const Reader = () => {
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
       pinchRef.current = { startDist: Math.hypot(dx, dy), startSize: fontSize };
+      setIsPinching(true);
     }
   }, [fontSize]);
 
@@ -45,6 +47,7 @@ const Reader = () => {
 
   const onTouchEnd = useCallback(() => {
     pinchRef.current = null;
+    setIsPinching(false);
   }, []);
 
   if (!stotra) {
@@ -109,8 +112,8 @@ const Reader = () => {
 
           <div className="mt-5 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-          {/* Font size indicator — visible during pinch */}
-          {pinchRef.current !== null && (
+          {/* Font size indicator — visible only during pinch */}
+          {isPinching && (
             <div className="pointer-events-none fixed inset-x-0 top-20 z-50 flex justify-center">
               <span className="rounded-full bg-black/60 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
                 {fontSize}px
