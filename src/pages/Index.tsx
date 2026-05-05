@@ -1,34 +1,73 @@
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
 import { BrandTitle } from "@/components/app/BrandTitle";
-import { CategoryArc } from "@/components/app/CategoryArc";
+import bapuImg from "@/assets/bapu.webp";
 
 const Index = () => {
-  const hour = new Date().getHours();
-  const greet =
-    hour < 5 ? "शुभ रात्रि" : hour < 12 ? "सुप्रभात" : hour < 17 ? "नमस्कार" : "शुभ संध्या";
-
   return (
     <>
       <DivineBackground />
       <AppShell>
-        {/* flex column so the category arc sits at the bottom of the screen */}
-        <div className="relative flex min-h-[calc(100dvh-8.5rem)] flex-col overflow-hidden">
-          <header className="pt-2">
-            <p className="font-devanagari text-sm text-muted-foreground">{greet} 🙏</p>
+        <div className="relative flex min-h-[calc(100dvh-8.5rem)] flex-col items-center">
+          {/* Om symbol */}
+          <p className="mt-1 font-devanagari text-xs text-muted-foreground tracking-widest">
+            ✻ <span className="text-base">ॐ</span> ✻
+          </p>
+
+          {/* Brand title */}
+          <header className="mt-1 text-center">
             <h1 className="leading-tight">
               <BrandTitle size="lg" />
             </h1>
           </header>
 
-          {/* Category arc centered just above the bottom nav, spans the nav width */}
-          <section className="pointer-events-none fixed inset-x-0 bottom-10 z-30 mx-auto flex max-w-md justify-center px-4">
-            <div className="arc-flare" aria-hidden />
-            <div className="arc-shimmer" aria-hidden />
-            <div className="pointer-events-auto w-full">
-              <CategoryArc />
+          {/* Decorative divider */}
+          <div className="mt-2 flex items-center gap-2">
+            <span className="h-px w-12 bg-border/60" />
+            <span className="h-1 w-16 rounded-full bg-primary/50" />
+            <span className="h-px w-12 bg-border/60" />
+          </div>
+
+          {/* Sparkle diamonds + sacred mantra */}
+          <p className="mt-2 flex items-center gap-1 font-devanagari text-xs text-muted-foreground">
+            <span className="text-primary">✦</span>
+            <span className="text-primary/70">✦</span>
+            <span className="text-primary">✦</span>
+          </p>
+          <p className="font-devanagari text-sm tracking-wide text-foreground/80">
+            ॥ हरि ॐ ॥ श्रीराम ॥ अंबज्ञ ॥
+          </p>
+
+          {/* Bapu photo */}
+          <div className="mt-4 w-[72%] max-w-[280px]">
+            <div className="bapu-frame overflow-hidden rounded-3xl border-2 border-primary/30 shadow-card">
+              <img
+                src={bapuImg}
+                alt="परमपूज्य सद्गुरु श्री अनिरुद्ध बापू"
+                className="aspect-[3/4] w-full object-cover object-top"
+                width={280}
+                height={373}
+              />
             </div>
-          </section>
+          </div>
+
+          {/* Caption */}
+          <p className="mt-3 font-devanagari text-sm font-semibold text-foreground">
+            परमपूज्य सद्गुरु श्री अनिरुद्ध बापू
+          </p>
+
+          {/* Shloka card */}
+          <div className="mt-4 mb-4 w-full rounded-2xl border border-border/40 bg-card/70 px-5 py-4 shadow-card backdrop-blur-sm">
+            <p className="mb-2 flex justify-center gap-1 text-primary">
+              <span>✦</span><span className="text-sm">✦</span><span>✦</span>
+            </p>
+            <p className="font-devanagari text-base leading-relaxed text-foreground">
+              गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुदेवो महेश्वरः ।
+            </p>
+            <p className="font-devanagari text-sm leading-relaxed text-muted-foreground">
+              गुरुदेव परब्रह्म तस्मै श्रीगुरवे नमः ॥
+            </p>
+          </div>
         </div>
       </AppShell>
     </>
