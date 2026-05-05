@@ -1,19 +1,8 @@
 import { useMemo } from "react";
-import bapuImg from "@/assets/bapu.webp";
-
-const VARIANTS = ["", "divine-bg--lotus", "divine-bg--temple", "divine-bg--cosmos"];
+import sonchafa1 from "@/assets/sonchafa-flower.png";
+import sonchafa2 from "@/assets/sonchafa-flower2.png";
 
 export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
-  // Pick a variant once per session so it stays stable while the user navigates
-  const variant = useMemo(() => {
-    if (typeof window === "undefined") return "";
-    const KEY = "divine.bg.variant";
-    const stored = sessionStorage.getItem(KEY);
-    if (stored !== null) return stored;
-    const pick = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
-    sessionStorage.setItem(KEY, pick);
-    return pick;
-  }, []);
   const particles = useMemo(
     () =>
       Array.from({ length: 14 }).map((_, i) => ({
@@ -22,9 +11,8 @@ export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
         duration: `${18 + ((i * 3) % 14)}s`,
         size: `${4 + (i % 4)}px`,
       })),
-    []
+    [],
   );
-  // Slow, drifting golden dust — separate, slower layer than the upward sparks
   const dust = useMemo(
     () =>
       Array.from({ length: 26 }).map((_, i) => ({
@@ -34,22 +22,54 @@ export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
         duration: `${28 + ((i * 5) % 24)}s`,
         size: `${2 + (i % 3)}px`,
       })),
-    []
+    [],
   );
+
+  // Sonchafa flower positions — scattered around edges
+  const flowers = useMemo(
+    () => [
+      { src: sonchafa1, top: "-2%", left: "-6%", size: 120, rotate: -25, delay: "0s", dur: "18s" },
+      { src: sonchafa2, top: "8%", right: "-4%", size: 100, rotate: 15, delay: "3s", dur: "22s" },
+      { src: sonchafa1, top: "55%", left: "-8%", size: 110, rotate: 40, delay: "6s", dur: "20s" },
+      { src: sonchafa2, top: "65%", right: "-5%", size: 95, rotate: -30, delay: "9s", dur: "24s" },
+      { src: sonchafa1, top: "30%", left: "-3%", size: 80, rotate: 60, delay: "2s", dur: "16s" },
+      { src: sonchafa2, top: "85%", right: "5%", size: 85, rotate: -10, delay: "5s", dur: "19s" },
+      { src: sonchafa1, top: "15%", left: "80%", size: 70, rotate: 30, delay: "8s", dur: "21s" },
+      { src: sonchafa2, top: "45%", left: "85%", size: 75, rotate: -45, delay: "4s", dur: "17s" },
+    ],
+    [],
+  );
+
   return (
-    <div className={`divine-bg ${variant} ${stable ? "divine-bg--stable" : ""}`} aria-hidden>
+    <div className={`divine-bg ${stable ? "divine-bg--stable" : ""}`} aria-hidden>
       <div className="divine-nebula" />
       <div className="divine-nebula divine-nebula--alt" />
-      {/* Bapu portrait blended softly into the background */}
-      <div
-        className="divine-bapu"
-        style={{ backgroundImage: `url(${bapuImg})` }}
-      />
       <div className="divine-noise" />
       <div className="divine-mandala" />
       <div className="divine-flare divine-flare--a" />
       <div className="divine-flare divine-flare--b" />
       <div className="divine-orb" />
+      {/* Animated sonchafa flowers */}
+      <div className="divine-flowers">
+        {flowers.map((f, i) => (
+          <img
+            key={i}
+            src={f.src}
+            alt=""
+            className="divine-flower"
+            style={{
+              top: f.top,
+              left: f.left,
+              right: (f as any).right,
+              width: f.size,
+              height: f.size,
+              transform: `rotate(${f.rotate}deg)`,
+              animationDelay: f.delay,
+              animationDuration: f.dur,
+            }}
+          />
+        ))}
+      </div>
       <div className="divine-dust">
         {dust.map((p, i) => (
           <span
