@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import sonchafa1 from "@/assets/sonchafa-flower.png";
 import sonchafa2 from "@/assets/sonchafa-flower2.png";
+import sonchafa3 from "@/assets/sonchafa-flower3.png";
+import spaceNebula from "@/assets/space-nebula.jpg";
 
 export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
   const particles = useMemo(
@@ -28,14 +30,14 @@ export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
   // Sonchafa flower positions — scattered around edges
   const flowers = useMemo(
     () => [
-      { src: sonchafa1, top: "-2%", left: "-6%", size: 120, rotate: -25, delay: "0s", dur: "18s" },
-      { src: sonchafa2, top: "8%", right: "-4%", size: 100, rotate: 15, delay: "3s", dur: "22s" },
-      { src: sonchafa1, top: "55%", left: "-8%", size: 110, rotate: 40, delay: "6s", dur: "20s" },
-      { src: sonchafa2, top: "65%", right: "-5%", size: 95, rotate: -30, delay: "9s", dur: "24s" },
-      { src: sonchafa1, top: "30%", left: "-3%", size: 80, rotate: 60, delay: "2s", dur: "16s" },
-      { src: sonchafa2, top: "85%", right: "5%", size: 85, rotate: -10, delay: "5s", dur: "19s" },
+      { src: sonchafa1, top: "-2%", left: "-6%", size: 110, rotate: -25, delay: "0s", dur: "18s" },
+      { src: sonchafa2, top: "8%", right: "-4%", size: 95, rotate: 15, delay: "3s", dur: "22s" },
+      { src: sonchafa3, top: "55%", left: "-8%", size: 105, rotate: 40, delay: "6s", dur: "20s" },
+      { src: sonchafa1, top: "65%", right: "-5%", size: 90, rotate: -30, delay: "9s", dur: "24s" },
+      { src: sonchafa2, top: "30%", left: "-3%", size: 80, rotate: 60, delay: "2s", dur: "16s" },
+      { src: sonchafa3, top: "85%", right: "5%", size: 85, rotate: -10, delay: "5s", dur: "19s" },
       { src: sonchafa1, top: "15%", left: "80%", size: 70, rotate: 30, delay: "8s", dur: "21s" },
-      { src: sonchafa2, top: "45%", left: "85%", size: 75, rotate: -45, delay: "4s", dur: "17s" },
+      { src: sonchafa3, top: "45%", left: "85%", size: 75, rotate: -45, delay: "4s", dur: "17s" },
     ],
     [],
   );
@@ -49,7 +51,15 @@ export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
       <div className="divine-flare divine-flare--a" />
       <div className="divine-flare divine-flare--b" />
       <div className="divine-orb" />
-      {/* Animated sonchafa flowers */}
+      {/* Space nebula for dark mode */}
+      <div className="divine-space-bg">
+        <img
+          src={spaceNebula}
+          alt=""
+          className="divine-space-img"
+        />
+      </div>
+      {/* Animated sonchafa flowers (light mode only) */}
       <div className="divine-flowers">
         {flowers.map((f, i) => (
           <img

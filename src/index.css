@@ -447,10 +447,7 @@
   animation: flower-drift ease-in-out infinite;
   will-change: transform;
 }
-.dark .divine-flower {
-  opacity: 0.15;
-  filter: drop-shadow(0 4px 8px hsl(40 60% 30% / 0.1)) brightness(0.6);
-}
+.dark .divine-flowers { display: none; }
 @keyframes flower-drift {
   0%   { transform: rotate(var(--tw-rotate, 0deg)) translate(0, 0) scale(1); }
   25%  { transform: rotate(var(--tw-rotate, 0deg)) translate(6px, -8px) scale(1.03); }
@@ -572,55 +569,65 @@
   0%, 100% { text-shadow: 0 0 12px hsl(45 100% 65% / 0.4), 0 6px 12px hsl(20 70% 15% / 0.55); filter: drop-shadow(0 0 6px hsl(45 100% 60% / 0.35)); }
   50%      { text-shadow: 0 0 28px hsl(45 100% 65% / 0.7), 0 6px 12px hsl(20 70% 15% / 0.55); filter: drop-shadow(0 0 14px hsl(45 100% 60% / 0.55)); }
 }
-.brand-3d {
-  animation: divine-float 5s ease-in-out infinite;
-  perspective: 600px;
-}
-.brand-3d__text {
-  animation: divine-glow-pulse 4s ease-in-out infinite;
-}
+
 /* 3D depth on icon hover */
 .icon-3d__face {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backface-visibility: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-3d { animation: none; }
-  .brand-3d__text { animation: none; }
+  .brand-title { animation: none; }
 }
 
 /* ============ Brand wordmark — 3D calligraphy ============ */
-.brand-3d { position: relative; isolation: isolate; }
-.brand-3d__text {
-  background: linear-gradient(180deg, hsl(48 100% 78%) 0%, hsl(38 95% 58%) 45%, hsl(20 85% 42%) 100%);
+/* ============ Space nebula background (dark mode only) ============ */
+.divine-space-bg {
+  position: absolute;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+}
+.dark .divine-space-bg { display: block; }
+.divine-space-img {
+  width: 140%;
+  height: 140%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.5;
+  animation: space-pan 60s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes space-pan {
+  0%   { transform: translate(0%, 0%) scale(1); }
+  25%  { transform: translate(-5%, -3%) scale(1.08); }
+  50%  { transform: translate(-8%, 2%) scale(1.15); }
+  75%  { transform: translate(-3%, -5%) scale(1.1); }
+  100% { transform: translate(-10%, -4%) scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .divine-space-img { animation: none; }
+}
+
+/* ============ Brand wordmark — artistic calligraphy ============ */
+.brand-title { position: relative; isolation: isolate; }
+.brand-title__text {
+  background: linear-gradient(180deg, hsl(48 100% 78%) 0%, hsl(38 95% 58%) 45%, hsl(25 80% 40%) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow:
-    0 1px 0 hsl(45 95% 85%),
-    0 2px 0 hsl(40 80% 55%),
-    0 3px 0 hsl(30 70% 40%),
-    0 4px 0 hsl(20 60% 30%),
-    0 6px 12px hsl(20 70% 15% / 0.55),
-    0 0 18px hsl(45 100% 65% / 0.55);
-  filter: drop-shadow(0 0 6px hsl(45 100% 60% / 0.35));
+    0 2px 4px hsl(20 70% 15% / 0.35);
+  filter: drop-shadow(0 1px 2px hsl(20 60% 20% / 0.25));
   display: inline-block;
+  letter-spacing: 0.08em;
+  font-weight: 700;
 }
-.brand-3d__flare {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(115deg, transparent 30%, hsl(45 100% 92% / 0.85) 45%, transparent 60%);
-  -webkit-mask-image: linear-gradient(180deg, black, black);
-  mix-blend-mode: screen;
-  opacity: 0.55;
-  animation: brand-flare 5s ease-in-out infinite;
-  border-radius: inherit;
-}
-@keyframes brand-flare {
-  0%, 100% { transform: translateX(-120%); opacity: 0; }
-  40%      { opacity: 0.7; }
-  60%      { transform: translateX(120%); opacity: 0; }
+.dark .brand-title__text {
+  background: linear-gradient(180deg, hsl(48 100% 85%) 0%, hsl(42 95% 68%) 50%, hsl(35 90% 55%) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 2px 8px hsl(45 100% 60% / 0.3);
+  filter: drop-shadow(0 0 8px hsl(45 100% 60% / 0.2));
 }
 
 /* ============ Ancient page (for category title) ============ */
