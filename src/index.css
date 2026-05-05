@@ -432,6 +432,46 @@
   .divine-dust span { animation: none; }
 }
 
+/* ============ Sonchafa flowers — gentle drift ============ */
+.divine-flowers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.divine-flower {
+  position: absolute;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: drop-shadow(0 4px 8px hsl(40 60% 30% / 0.3));
+  animation: flower-drift ease-in-out infinite;
+  will-change: transform;
+}
+.dark .divine-flower {
+  opacity: 0.15;
+  filter: drop-shadow(0 4px 8px hsl(40 60% 30% / 0.1)) brightness(0.6);
+}
+@keyframes flower-drift {
+  0%   { transform: rotate(var(--tw-rotate, 0deg)) translate(0, 0) scale(1); }
+  25%  { transform: rotate(var(--tw-rotate, 0deg)) translate(6px, -8px) scale(1.03); }
+  50%  { transform: rotate(var(--tw-rotate, 0deg)) translate(-4px, 5px) scale(0.97); }
+  75%  { transform: rotate(var(--tw-rotate, 0deg)) translate(8px, 3px) scale(1.02); }
+  100% { transform: rotate(var(--tw-rotate, 0deg)) translate(0, 0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .divine-flower { animation: none; }
+}
+
+/* ============ Bapu photo frame ============ */
+.bapu-frame {
+  background: linear-gradient(145deg, hsl(45 80% 90%), hsl(38 60% 85%));
+  padding: 4px;
+}
+.dark .bapu-frame {
+  background: linear-gradient(145deg, hsl(45 70% 50% / 0.4), hsl(280 40% 30% / 0.4));
+  border-color: hsl(45 80% 55% / 0.5);
+}
+
 /* ============ Arc lens-flare under the category carousel ============ */
 .arc-flare {
   position: absolute;
