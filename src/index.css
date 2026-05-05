@@ -569,21 +569,14 @@
   0%, 100% { text-shadow: 0 0 12px hsl(45 100% 65% / 0.4), 0 6px 12px hsl(20 70% 15% / 0.55); filter: drop-shadow(0 0 6px hsl(45 100% 60% / 0.35)); }
   50%      { text-shadow: 0 0 28px hsl(45 100% 65% / 0.7), 0 6px 12px hsl(20 70% 15% / 0.55); filter: drop-shadow(0 0 14px hsl(45 100% 60% / 0.55)); }
 }
-.brand-3d {
-  animation: divine-float 5s ease-in-out infinite;
-  perspective: 600px;
-}
-.brand-3d__text {
-  animation: divine-glow-pulse 4s ease-in-out infinite;
-}
+
 /* 3D depth on icon hover */
 .icon-3d__face {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backface-visibility: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-3d { animation: none; }
-  .brand-3d__text { animation: none; }
+  .brand-title { animation: none; }
 }
 
 /* ============ Brand wordmark — 3D calligraphy ============ */
