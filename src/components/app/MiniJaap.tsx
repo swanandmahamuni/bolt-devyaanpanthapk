@@ -3,6 +3,7 @@ import { useLocalStorage, todayKey } from "@/lib/storage";
 import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
 import rudrakshaImg from "@/assets/rudraksha-clean.png";
+import rudraksha3dImg from "@/assets/rudraksha-3d.png";
 import chimeMp3 from "@/assets/hariom-chime.mp3";
 
 // Convert Western digits to Devanagari numerals
@@ -94,7 +95,7 @@ export const MiniJaap = ({ className }: { className?: string }) => {
   // Default starting position: top-right corner
   const defaultPos = () => {
     if (typeof window === "undefined") return { x: 16, y: 16 };
-    return { x: window.innerWidth - 64 - 12, y: 12 };
+    return { x: window.innerWidth - 76 - 12, y: 12 };
   };
   const currentPos = pos ?? defaultPos();
 
@@ -175,20 +176,17 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         touchAction: "none",
       }}
       className={cn(
-        "group z-50 h-16 w-16 select-none rounded-full outline-none bg-transparent border-0 p-0",
+        "group z-50 h-[76px] w-[76px] select-none rounded-full outline-none bg-transparent border-0 p-0",
         "transition-transform active:scale-95 cursor-grab active:cursor-grabbing",
         pulse && "animate-tap",
         resetting && "animate-pulse-glow",
         className
       )}
     >
-      {/* Soft saffron glow behind the bead */}
-      <span aria-hidden className="rudraksha-aura absolute inset-0 rounded-full" />
-      <span aria-hidden className="rudraksha-backdrop absolute inset-0 rounded-full" />
       {/* Real Rudraksha image — slow rotation in place */}
       <span className="rudraksha-img absolute inset-0 grid place-items-center rounded-full overflow-hidden">
         <img
-          src={rudrakshaImg}
+          src={rudraksha3dImg}
           alt=""
           aria-hidden
           className="rudraksha-img__face h-full w-full object-cover"
@@ -199,7 +197,7 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         </span>
       </span>
       {/* Lens flare overlay */}
-      <span aria-hidden className="rudraksha-flare absolute inset-0 rounded-full" />
+      <span aria-hidden className="rudraksha-highlight absolute inset-0 rounded-full" />
 
       {/* Chant timer — only visible after the user starts chanting */}
       {(running || elapsed > 0) && (
