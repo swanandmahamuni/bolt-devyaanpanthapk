@@ -57,15 +57,15 @@ const Index = () => {
           </p>
 
           {/* Shloka card */}
-          <div className="mt-4 mb-4 w-full rounded-2xl border border-border/40 bg-card/70 px-5 py-4 shadow-card backdrop-blur-sm">
-            <p className="mb-2 flex justify-center gap-1 text-primary">
+          <div className="mt-4 mb-4 w-full rounded-2xl border border-border/40 bg-card/70 px-5 py-5 shadow-card backdrop-blur-sm text-center">
+            <p className="mb-3 flex justify-center gap-1 text-primary">
               <span>✦</span><span className="text-sm">✦</span><span>✦</span>
             </p>
-            <p className="font-devanagari text-base leading-relaxed text-foreground">
-              गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुदेवो महेश्वरः ।
+            <p className="shloka-text font-devanagari text-[15px] leading-loose text-foreground">
+              गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुर्देवो महेश्वरः ।
             </p>
-            <p className="font-devanagari text-sm leading-relaxed text-muted-foreground">
-              गुरुदेव परब्रह्म तस्मै श्रीगुरवे नमः ॥
+            <p className="shloka-text font-devanagari text-[15px] leading-loose text-foreground">
+              गुरुःसाक्षात् परब्रह्म तस्मै श्रीगुरवे नम: ॥
             </p>
           </div>
         </div>
