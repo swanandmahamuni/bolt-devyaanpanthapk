@@ -611,23 +611,30 @@
 /* ============ Brand wordmark — artistic calligraphy ============ */
 .brand-title { position: relative; isolation: isolate; }
 .brand-title__text {
-  background: linear-gradient(180deg, hsl(48 100% 78%) 0%, hsl(38 95% 58%) 45%, hsl(25 80% 40%) 100%);
+  background: linear-gradient(180deg, hsl(50 100% 88%) 0%, hsl(45 100% 72%) 20%, hsl(38 95% 55%) 50%, hsl(28 85% 38%) 80%, hsl(20 75% 28%) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow:
-    0 2px 4px hsl(20 70% 15% / 0.35);
-  filter: drop-shadow(0 1px 2px hsl(20 60% 20% / 0.25));
+    0 1px 0 hsl(45 100% 75% / 0.6),
+    0 2px 0 hsl(35 80% 45% / 0.4),
+    0 3px 0 hsl(25 70% 35% / 0.3),
+    0 4px 6px hsl(20 60% 15% / 0.5);
+  filter: drop-shadow(0 2px 4px hsl(20 60% 15% / 0.35));
   display: inline-block;
-  letter-spacing: 0.08em;
-  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-weight: 900;
+  -webkit-text-stroke: 0.3px hsl(35 80% 45% / 0.3);
 }
 .dark .brand-title__text {
-  background: linear-gradient(180deg, hsl(48 100% 85%) 0%, hsl(42 95% 68%) 50%, hsl(35 90% 55%) 100%);
+  background: linear-gradient(180deg, hsl(50 100% 90%) 0%, hsl(45 100% 75%) 25%, hsl(38 95% 60%) 55%, hsl(30 85% 45%) 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  text-shadow: 0 2px 8px hsl(45 100% 60% / 0.3);
-  filter: drop-shadow(0 0 8px hsl(45 100% 60% / 0.2));
+  text-shadow:
+    0 1px 0 hsl(45 100% 80% / 0.5),
+    0 2px 0 hsl(35 80% 50% / 0.3),
+    0 3px 6px hsl(0 0% 0% / 0.6);
+  filter: drop-shadow(0 0 10px hsl(45 100% 60% / 0.25));
 }
 
 /* ============ Ancient page (for category title) ============ */
