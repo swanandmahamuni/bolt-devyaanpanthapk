@@ -5,7 +5,8 @@ import { DivineBackground } from "@/components/app/DivineBackground";
 import { useLocalStorage, todayKey } from "@/lib/storage";
 import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
-import chimeMp3 from "@/assets/hariom-chime.mp3";
+import rudraksha3dImg from "@/assets/rudraksha-3d.png";
+import chimeMp3 from "@/assets/hariomShreeRamAmbadnya.mp3";
 
 const presets = [54, 108, 1008];
 
@@ -38,7 +39,7 @@ const Jaap = () => {
       const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
       setStreak({ last: d, days: streak.last === yesterday ? streak.days + 1 : 1 });
     }
-    if (next % 54 === 0) {
+    if (next % 25 === 0) {
       playDevotionalChime();
       vibrate([60, 80, 60]);
     }
@@ -71,13 +72,32 @@ const Jaap = () => {
           >
             <button
               onClick={onTap}
-              className="grid h-[88%] w-[88%] place-items-center rounded-full bg-gradient-banner text-primary-foreground shadow-glow active:scale-95"
+              className="relative grid h-[88%] w-[88%] place-items-center rounded-full select-none overflow-hidden active:scale-95"
               aria-label="Tap to count"
             >
-              <div>
-                <div className="font-display text-6xl font-semibold leading-none">{count}</div>
-                <div className="mt-2 text-xs uppercase tracking-widest opacity-90">Tap +1</div>
-                <div className="mt-1 text-[11px] opacity-80">target {target}</div>
+              {/* 3D Rudraksha image */}
+              <span className="rudraksha-img absolute inset-0 grid place-items-center rounded-full overflow-hidden">
+                <img
+                  src={rudraksha3dImg}
+                  alt=""
+                  aria-hidden
+                  className={cn(
+                    "rudraksha-img__face h-full w-full object-cover transition-transform duration-200",
+                    tap && "scale-110"
+                  )}
+                  draggable={false}
+                />
+              </span>
+              {/* Realistic 3D shading Vignette */}
+              <span aria-hidden className="rudraksha-shading absolute inset-0 rounded-full" />
+              {/* Lens flare / highlight overlay */}
+              <span aria-hidden className="rudraksha-highlight absolute inset-0 rounded-full opacity-65" />
+              
+              {/* Count overlay */}
+              <div className="relative z-10 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
+                <div className="font-display text-5xl font-bold leading-none">{count}</div>
+                <div className="mt-1 text-[10px] uppercase tracking-widest opacity-90">Tap +1</div>
+                <div className="text-[9px] opacity-80">target {target}</div>
               </div>
             </button>
           </div>

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RotateCcw, Sparkles, Maximize2 } from "lucide-react";
 import { useLocalStorage, todayKey } from "@/lib/storage";
-import { playChime, vibrate } from "@/lib/chime";
+import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
+import chimeMp3 from "@/assets/hariomShreeRamAmbadnya.mp3";
 
 export const JaapBanner = () => {
   const [count, setCount] = useLocalStorage<number>("jaap.count", 0);
@@ -14,13 +15,22 @@ export const JaapBanner = () => {
   });
   const [pulse, setPulse] = useState(false);
 
+  useEffect(() => {
+    setChimeAudioSrc(chimeMp3);
+  }, []);
+
   const tap = () => {
     const next = count + 1;
     setCount(next);
     const d = todayKey();
     setToday(today.date === d ? { date: d, count: today.count + 1 } : { date: d, count: 1 });
     vibrate(15);
-    if (next % 108 === 0) {
+    if (next % 25 === 0) {
+      playDevotionalChime();
+      vibrate([40, 60, 40]);
+      setPulse(true);
+      setTimeout(() => setPulse(false), 1400);
+    } else if (next % 108 === 0) {
       playChime();
       vibrate([40, 60, 40]);
       setPulse(true);

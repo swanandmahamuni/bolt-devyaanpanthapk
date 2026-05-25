@@ -71,10 +71,10 @@ export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
               right: (f as any).right,
               width: f.size,
               height: f.size,
-              transform: `rotate(${f.rotate}deg)`,
+              "--tw-rotate": `${f.rotate}deg`,
               animationDelay: f.delay,
               animationDuration: f.dur,
-            }}
+            } as React.CSSProperties}
           />
         ))}
       </div>
