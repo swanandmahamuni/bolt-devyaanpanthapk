@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RotateCcw, Sparkles, Maximize2 } from "lucide-react";
 import { useLocalStorage, todayKey } from "@/lib/storage";
-import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
+import { playDevotionalChime, playChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
-import chimeMp3 from "@/assets/hariomShreeRamAmbadnya.mp3";
 
 export const JaapBanner = () => {
   const [count, setCount] = useLocalStorage<number>("jaap.count", 0);
@@ -16,7 +15,7 @@ export const JaapBanner = () => {
   const [pulse, setPulse] = useState(false);
 
   useEffect(() => {
-    setChimeAudioSrc(chimeMp3);
+    setChimeAudioSrc("");
   }, []);
 
   const tap = () => {
@@ -56,7 +55,6 @@ export const JaapBanner = () => {
         pulse && "animate-pulse-glow"
       )}
     >
-      {/* sub rays */}
       <div
         className="pointer-events-none absolute -top-1/2 left-1/2 h-[200%] w-[200%] -translate-x-1/2 opacity-25"
         style={{

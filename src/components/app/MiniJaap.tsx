@@ -1,13 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocalStorage, todayKey } from "@/lib/storage";
-import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
+import { playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import rudrakshaImg from "@/assets/rudraksha-clean.png";
-import rudraksha3dImg from "@/assets/rudraksha-3d.png";
-import chimeMp3 from "@/assets/hariomShreeRamAmbadnya.mp3";
 
-// Convert Western digits to Devanagari numerals
 const DEV_DIGITS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
 const toDevanagari = (n: number | string) =>
   String(n).replace(/\d/g, (d) => DEV_DIGITS[Number(d)]);
@@ -20,12 +16,6 @@ const formatHMS = (totalSec: number) => {
   return `${pad(h)}:${pad(m)}:${pad(s)}`;
 };
 
-/**
- * Floating mini Jaap counter — visible on every screen.
- * - Single tap → +1 (also starts the chant timer)
- * - Long press (550ms) → reset count + timer
- * - Drag to reposition anywhere on screen (position persists for current session)
- */
 export const MiniJaap = ({ className }: { className?: string }) => {
   const isMobile = useIsMobile();
   const beadSize = isMobile ? 60 : 76;
@@ -34,8 +24,7 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     "jaap.today",
     { date: todayKey(), count: 0 }
   );
-  
-  // Session persistence for position
+
   const [pos, setPos] = useState<{ x: number; y: number } | null>(() => {
     if (typeof window === "undefined") return null;
     try {
@@ -63,7 +52,6 @@ export const MiniJaap = ({ className }: { className?: string }) => {
   const longTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const longFired = useRef(false);
 
-  // Drag state
   const dragState = useRef<{
     startX: number;
     startY: number;
@@ -73,12 +61,10 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     pointerId: number;
   } | null>(null);
 
-  // Preload the devotional MP3
   useEffect(() => {
-    setChimeAudioSrc(chimeMp3);
+    setChimeAudioSrc("");
   }, []);
 
-  // Tick the timer once per second while running
   useEffect(() => {
     if (!running) return;
     const id = setInterval(() => {
@@ -112,7 +98,6 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     longTimer.current = null;
   };
 
-  // Clamped position logic to keep the bead within the viewport
   const clampPos = (p: { x: number; y: number }) => {
     const maxX = window.innerWidth - beadSize - 12;
     const maxY = window.innerHeight - beadSize - 12;
@@ -122,7 +107,6 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     };
   };
 
-  // Default starting position: below Settings button on mobile, top-right on desktop
   const defaultPos = () => {
     if (typeof window === "undefined") return { x: 16, y: 16 };
     const margin = 12;
@@ -131,10 +115,9 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     const y = isMobile ? settingsTop + settingsHeight + 8 : margin;
     return { x: window.innerWidth - beadSize - margin, y };
   };
-  
+
   const currentPos = pos ? clampPos(pos) : defaultPos();
 
-  // Keep position inside viewport on resize
   useEffect(() => {
     const handleResize = () => {
       setPos((prev) => {
@@ -165,7 +148,6 @@ export const MiniJaap = ({ className }: { className?: string }) => {
       pointerId: e.pointerId,
     };
     longTimer.current = setTimeout(() => {
-      // Long-press reset (only if not dragging)
       if (dragState.current && !dragState.current.moved) {
         longFired.current = true;
         setCount(0);
@@ -232,7 +214,9 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         width: beadSize,
         height: beadSize,
         touchAction: "none",
-        transition: dragging ? "none" : "left 0.4s cubic-bezier(0.19, 1, 0.22, 1), top 0.4s cubic-bezier(0.19, 1, 0.22, 1), transform 0.15s ease",
+        transition: dragging
+          ? "none"
+          : "left 0.4s cubic-bezier(0.19, 1, 0.22, 1), top 0.4s cubic-bezier(0.19, 1, 0.22, 1), transform 0.15s ease",
       }}
       className={cn(
         "group z-50 select-none rounded-full outline-none bg-transparent border-0 p-0",
@@ -242,34 +226,26 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         className
       )}
     >
-      {/* Subtle divine wave accent */}
       <span className="divine-pulse-wave" />
-
-      {/* Real Rudraksha image — slow rotation in place */}
       <span className="rudraksha-img absolute inset-0 grid place-items-center rounded-full overflow-hidden">
-        <img
-          src={rudraksha3dImg}
-          alt=""
-          aria-hidden
-          className={cn(
-            "rudraksha-img__face h-full w-full object-cover transition-transform duration-200",
-            pulse && "scale-110"
-          )}
-          draggable={false}
+        <span
+          className="rudraksha-img__face h-full w-full rounded-full"
+          style={{
+            background: "radial-gradient(circle at 32% 30%, hsl(28 70% 38%) 0%, hsl(20 65% 22%) 35%, hsl(15 70% 12%) 75%)",
+          }}
         />
-        {/* Realistic 3D shading Vignette */}
         <span aria-hidden className="rudraksha-shading absolute inset-0 rounded-full" />
-        <span className={cn(
-          "rudraksha-img__count absolute font-devanagari-strong font-black leading-none text-white drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-tight",
-          isMobile ? "text-[20px]" : "text-[26px]"
-        )}>
+        <span
+          className={cn(
+            "rudraksha-img__count absolute font-devanagari-strong font-black leading-none text-white drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-tight",
+            isMobile ? "text-[20px]" : "text-[26px]"
+          )}
+        >
           {count > 9999 ? "∞" : toDevanagari(count)}
         </span>
       </span>
-      {/* Lens flare overlay */}
       <span aria-hidden className="rudraksha-highlight absolute inset-0 rounded-full opacity-65" />
 
-      {/* Chant timer — only visible after the user starts chanting */}
       {(running || elapsed > 0) && (
         <span
           aria-hidden

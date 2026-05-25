@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-export function useLocalStorage<T>(key: string, initial: T) {
+export function useLocalStorage<T>(key: string, initial: T): [T, (v: T | ((prev: T) => T)) => void] {
   const [value, setValue] = useState<T>(() => {
-    if (typeof window === "undefined") return initial;
     try {
-      const raw = window.localStorage.getItem(key);
-      return raw ? (JSON.parse(raw) as T) : initial;
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : initial;
     } catch {
       return initial;
     }
   });
+
   useEffect(() => {
-    try { window.localStorage.setItem(key, JSON.stringify(value)); } catch {}
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch {}
   }, [key, value]);
-  return [value, setValue] as const;
+
+  return [value, setValue];
 }
 
-export function todayKey() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
+export const todayKey = () => new Date().toISOString().slice(0, 10);

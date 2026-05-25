@@ -3,11 +3,9 @@ import { RotateCcw, Check, Flame, Trophy } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { DivineBackground } from "@/components/app/DivineBackground";
 import { useLocalStorage, todayKey } from "@/lib/storage";
-import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
+import { playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import rudraksha3dImg from "@/assets/rudraksha-3d.png";
-import chimeMp3 from "@/assets/hariomShreeRamAmbadnya.mp3";
 
 const presets = [54, 108, 1008];
 
@@ -23,7 +21,7 @@ const Jaap = () => {
   const [tap, setTap] = useState(false);
 
   useEffect(() => {
-    setChimeAudioSrc(chimeMp3);
+    setChimeAudioSrc("");
   }, []);
 
   const progress = Math.min(100, (count / target) * 100);
@@ -62,9 +60,7 @@ const Jaap = () => {
       <AppShell>
         <h1 className="mb-4 font-display text-3xl font-semibold">Jaap</h1>
 
-        {/* Counter */}
         <div className="parchment relative overflow-hidden p-6 text-center">
-          {/* Ring */}
           <div
             className={cn(
               "relative mx-auto grid place-items-center",
@@ -81,25 +77,17 @@ const Jaap = () => {
               className="relative grid h-[88%] w-[88%] place-items-center rounded-full select-none overflow-hidden active:scale-95"
               aria-label="Tap to count"
             >
-              {/* 3D Rudraksha image */}
               <span className="rudraksha-img absolute inset-0 grid place-items-center rounded-full overflow-hidden">
-                <img
-                  src={rudraksha3dImg}
-                  alt=""
-                  aria-hidden
-                  className={cn(
-                    "rudraksha-img__face h-full w-full object-cover transition-transform duration-200",
-                    tap && "scale-110"
-                  )}
-                  draggable={false}
+                <span
+                  className="rudraksha-img__face h-full w-full rounded-full"
+                  style={{
+                    background: "radial-gradient(circle at 32% 30%, hsl(28 70% 38%) 0%, hsl(20 65% 22%) 35%, hsl(15 70% 12%) 75%)",
+                  }}
                 />
               </span>
-              {/* Realistic 3D shading Vignette */}
               <span aria-hidden className="rudraksha-shading absolute inset-0 rounded-full" />
-              {/* Lens flare / highlight overlay */}
               <span aria-hidden className="rudraksha-highlight absolute inset-0 rounded-full opacity-65" />
-              
-              {/* Count overlay */}
+
               <div className="relative z-10 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
                 <div className={cn("font-display font-bold leading-none", isMobile ? "text-4xl" : "text-5xl")}>{count}</div>
                 <div className="mt-1 text-[10px] uppercase tracking-widest opacity-90">Tap +1</div>
@@ -132,7 +120,6 @@ const Jaap = () => {
           </div>
         </div>
 
-        {/* Stats */}
         <div className="mt-4 grid grid-cols-3 gap-3">
           <div className="parchment p-3 text-center">
             <Flame className="mx-auto h-5 w-5 text-primary" />

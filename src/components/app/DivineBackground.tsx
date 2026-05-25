@@ -1,8 +1,4 @@
 import { useMemo } from "react";
-import sonchafa1 from "@/assets/sonchafa-flower.png";
-import sonchafa2 from "@/assets/sonchafa-flower2.png";
-import sonchafa3 from "@/assets/sonchafa-flower3.png";
-import spaceNebula from "@/assets/space-nebula.jpg";
 
 export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
   const particles = useMemo(
@@ -27,57 +23,14 @@ export const DivineBackground = ({ stable = false }: { stable?: boolean }) => {
     [],
   );
 
-  // Sonchafa flower positions — scattered around edges
-  const flowers = useMemo(
-    () => [
-      { src: sonchafa1, top: "-3%", left: "-8%", size: 100, rotate: -25, delay: "0s", dur: "18s" },
-      { src: sonchafa2, top: "5%", right: "-6%", size: 90, rotate: 15, delay: "3s", dur: "22s" },
-      { src: sonchafa3, top: "50%", left: "-10%", size: 95, rotate: 40, delay: "6s", dur: "20s" },
-      { src: sonchafa1, top: "75%", right: "-7%", size: 85, rotate: -30, delay: "9s", dur: "24s" },
-      { src: sonchafa2, top: "28%", left: "-6%", size: 75, rotate: 60, delay: "2s", dur: "16s" },
-      { src: sonchafa3, top: "90%", left: "-5%", size: 80, rotate: -10, delay: "5s", dur: "19s" },
-    ],
-    [],
-  );
-
   return (
     <div className={`divine-bg ${stable ? "divine-bg--stable" : ""}`} aria-hidden>
       <div className="divine-nebula" />
       <div className="divine-nebula divine-nebula--alt" />
-      <div className="divine-noise" />
       <div className="divine-mandala" />
       <div className="divine-flare divine-flare--a" />
       <div className="divine-flare divine-flare--b" />
       <div className="divine-orb" />
-      {/* Space nebula for dark mode */}
-      <div className="divine-space-bg">
-        <img
-          src={spaceNebula}
-          alt=""
-          className="divine-space-img"
-        />
-      </div>
-      {/* Animated sonchafa flowers (light mode only) */}
-      <div className="divine-flowers">
-        {flowers.map((f, i) => (
-          <img
-            key={i}
-            src={f.src}
-            alt=""
-            className="divine-flower"
-            style={{
-              top: f.top,
-              left: f.left,
-              right: (f as any).right,
-              width: f.size,
-              height: f.size,
-              "--tw-rotate": `${f.rotate}deg`,
-              animationDelay: f.delay,
-              animationDuration: f.dur,
-            } as React.CSSProperties}
-          />
-        ))}
-      </div>
       <div className="divine-dust">
         {dust.map((p, i) => (
           <span
