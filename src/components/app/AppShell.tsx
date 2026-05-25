@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, BookOpen, Settings as SettingsIcon, Flame, Heart, LeafyGreen } from "lucide-react";
+import { Chrome as Home, BookOpen, Settings as SettingsIcon, Flame, Heart, LeafyGreen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 import { MiniJaap } from "@/components/app/MiniJaap";
@@ -18,23 +18,23 @@ export const AppShell = ({ children }: { children: ReactNode }) => {
   const pathname = location.pathname;
   const search = location.search;
   return (
-    <div className="relative mx-auto min-h-[100dvh] max-w-md overflow-hidden pb-24">
-      {/* Settings gear — top right corner */}
-      <Link
-        to="/settings"
-        aria-label="Settings"
-        className={cn(
-          "fixed top-4 right-4 z-50 grid h-10 w-10 place-items-center rounded-full border border-border/40 bg-card/70 backdrop-blur-md shadow-card transition-transform active:scale-90",
-          pathname === "/settings" ? "text-primary" : "text-muted-foreground"
-        )}
-      >
-        <SettingsIcon className="h-5 w-5" strokeWidth={1.5} />
-      </Link>
-
-      <div className="px-4 pt-6">{children}</div>
-
-      {/* Floating Rudraksha jaap bead — always visible, draggable */}
+    <>
+      {/* Floating Rudraksha jaap bead — outside overflow container so it is never clipped */}
       <MiniJaap />
+      <div className="relative mx-auto min-h-[100dvh] max-w-md overflow-x-hidden pb-24">
+        {/* Settings gear — top right corner */}
+        <Link
+          to="/settings"
+          aria-label="Settings"
+          className={cn(
+            "fixed top-4 right-4 z-50 grid h-10 w-10 place-items-center rounded-full border border-border/40 bg-card/70 backdrop-blur-md shadow-card transition-transform active:scale-90",
+            pathname === "/settings" ? "text-primary" : "text-muted-foreground"
+          )}
+        >
+          <SettingsIcon className="h-5 w-5" strokeWidth={1.5} />
+        </Link>
+
+        <div className="px-4 pt-6">{children}</div>
 
       <nav className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md px-4 pb-2">
         <div className="relative flex items-end justify-around rounded-[22px] border border-border/20 bg-card/60 px-3 pt-1.5 pb-1.5 backdrop-blur-2xl shadow-[0_8px_32px_-8px_hsl(0_0%_0%/0.25)]">
@@ -101,6 +101,7 @@ export const AppShell = ({ children }: { children: ReactNode }) => {
           })}
         </div>
       </nav>
-    </div>
+      </div>
+    </>
   );
 };

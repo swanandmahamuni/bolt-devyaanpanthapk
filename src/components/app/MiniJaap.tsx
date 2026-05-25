@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocalStorage, todayKey } from "@/lib/storage";
 import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 import rudrakshaImg from "@/assets/rudraksha-clean.png";
 import rudraksha3dImg from "@/assets/rudraksha-3d.png";
 import chimeMp3 from "@/assets/hariomShreeRamAmbadnya.mp3";
@@ -26,6 +27,8 @@ const formatHMS = (totalSec: number) => {
  * - Drag to reposition anywhere on screen (position persists for current session)
  */
 export const MiniJaap = ({ className }: { className?: string }) => {
+  const isMobile = useIsMobile();
+  const beadSize = isMobile ? 60 : 76;
   const [count, setCount] = useLocalStorage<number>("jaap.count", 0);
   const [today, setToday] = useLocalStorage<{ date: string; count: number }>(
     "jaap.today",
@@ -111,19 +114,22 @@ export const MiniJaap = ({ className }: { className?: string }) => {
 
   // Clamped position logic to keep the bead within the viewport
   const clampPos = (p: { x: number; y: number }) => {
-    const size = 76;
-    const maxX = window.innerWidth - size - 12;
-    const maxY = window.innerHeight - size - 12;
+    const maxX = window.innerWidth - beadSize - 12;
+    const maxY = window.innerHeight - beadSize - 12;
     return {
       x: Math.min(Math.max(12, p.x), maxX),
       y: Math.min(Math.max(12, p.y), maxY),
     };
   };
 
-  // Default starting position: top-right corner
+  // Default starting position: below Settings button on mobile, top-right on desktop
   const defaultPos = () => {
     if (typeof window === "undefined") return { x: 16, y: 16 };
-    return { x: window.innerWidth - 76 - 12, y: 12 };
+    const margin = 12;
+    const settingsHeight = 40;
+    const settingsTop = 16;
+    const y = isMobile ? settingsTop + settingsHeight + 8 : margin;
+    return { x: window.innerWidth - beadSize - margin, y };
   };
   
   const currentPos = pos ? clampPos(pos) : defaultPos();
@@ -133,9 +139,8 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     const handleResize = () => {
       setPos((prev) => {
         if (!prev) return null;
-        const size = 76;
-        const maxX = window.innerWidth - size - 12;
-        const maxY = window.innerHeight - size - 12;
+        const maxX = window.innerWidth - beadSize - 12;
+        const maxY = window.innerHeight - beadSize - 12;
         const clampedX = Math.min(Math.max(12, prev.x), maxX);
         const clampedY = Math.min(Math.max(12, prev.y), maxY);
         if (clampedX !== prev.x || clampedY !== prev.y) {
@@ -146,7 +151,7 @@ export const MiniJaap = ({ className }: { className?: string }) => {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [beadSize]);
 
   const onPointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
@@ -185,9 +190,8 @@ export const MiniJaap = ({ className }: { className?: string }) => {
       cancelLong();
     }
     if (ds.moved) {
-      const size = 76;
-      const maxX = window.innerWidth - size - 12;
-      const maxY = window.innerHeight - size - 12;
+      const maxX = window.innerWidth - beadSize - 12;
+      const maxY = window.innerHeight - beadSize - 12;
       const nx = Math.min(Math.max(12, ds.origX + dx), maxX);
       const ny = Math.min(Math.max(12, ds.origY + dy), maxY);
       setPos({ x: nx, y: ny });
@@ -225,11 +229,13 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         position: "fixed",
         left: currentPos.x,
         top: currentPos.y,
+        width: beadSize,
+        height: beadSize,
         touchAction: "none",
         transition: dragging ? "none" : "left 0.4s cubic-bezier(0.19, 1, 0.22, 1), top 0.4s cubic-bezier(0.19, 1, 0.22, 1), transform 0.15s ease",
       }}
       className={cn(
-        "group z-50 h-[76px] w-[76px] select-none rounded-full outline-none bg-transparent border-0 p-0",
+        "group z-50 select-none rounded-full outline-none bg-transparent border-0 p-0",
         "transition-all duration-150 active:scale-90 cursor-grab active:cursor-grabbing",
         pulse && "animate-tap",
         resetting && "animate-pulse-glow",
@@ -253,7 +259,10 @@ export const MiniJaap = ({ className }: { className?: string }) => {
         />
         {/* Realistic 3D shading Vignette */}
         <span aria-hidden className="rudraksha-shading absolute inset-0 rounded-full" />
-        <span className="rudraksha-img__count absolute font-devanagari-strong text-[26px] font-black leading-none text-white drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-tight">
+        <span className={cn(
+          "rudraksha-img__count absolute font-devanagari-strong font-black leading-none text-white drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-tight",
+          isMobile ? "text-[20px]" : "text-[26px]"
+        )}>
           {count > 9999 ? "∞" : toDevanagari(count)}
         </span>
       </span>
@@ -264,7 +273,10 @@ export const MiniJaap = ({ className }: { className?: string }) => {
       {(running || elapsed > 0) && (
         <span
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/55 px-1.5 py-0.5 font-mono text-[10px] font-bold leading-none text-amber-100 shadow-[0_2px_6px_rgba(0,0,0,0.5)] backdrop-blur-sm"
+          className={cn(
+            "pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/55 px-1.5 py-0.5 font-mono font-bold leading-none text-amber-100 shadow-[0_2px_6px_rgba(0,0,0,0.5)] backdrop-blur-sm",
+            isMobile ? "text-[9px]" : "text-[10px]"
+          )}
         >
           {formatHMS(elapsed)}
         </span>

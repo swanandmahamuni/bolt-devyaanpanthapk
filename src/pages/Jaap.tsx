@@ -5,12 +5,14 @@ import { DivineBackground } from "@/components/app/DivineBackground";
 import { useLocalStorage, todayKey } from "@/lib/storage";
 import { playChime, playDevotionalChime, setChimeAudioSrc, vibrate } from "@/lib/chime";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 import rudraksha3dImg from "@/assets/rudraksha-3d.png";
 import chimeMp3 from "@/assets/hariomShreeRamAmbadnya.mp3";
 
 const presets = [54, 108, 1008];
 
 const Jaap = () => {
+  const isMobile = useIsMobile();
   const [count, setCount] = useLocalStorage<number>("jaap.count", 0);
   const [target, setTarget] = useLocalStorage<number>("jaap.target", 108);
   const [history, setHistory] = useLocalStorage<Record<string, number>>("jaap.history", {});
@@ -64,7 +66,11 @@ const Jaap = () => {
         <div className="parchment relative overflow-hidden p-6 text-center">
           {/* Ring */}
           <div
-            className={cn("relative mx-auto grid h-56 w-56 place-items-center", tap && "animate-tap")}
+            className={cn(
+              "relative mx-auto grid place-items-center",
+              isMobile ? "h-44 w-44" : "h-56 w-56",
+              tap && "animate-tap"
+            )}
             style={{
               background: `conic-gradient(hsl(var(--primary)) ${progress}%, hsl(var(--muted)) ${progress}% 100%)`,
               borderRadius: "50%",
@@ -95,7 +101,7 @@ const Jaap = () => {
               
               {/* Count overlay */}
               <div className="relative z-10 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
-                <div className="font-display text-5xl font-bold leading-none">{count}</div>
+                <div className={cn("font-display font-bold leading-none", isMobile ? "text-4xl" : "text-5xl")}>{count}</div>
                 <div className="mt-1 text-[10px] uppercase tracking-widest opacity-90">Tap +1</div>
                 <div className="text-[9px] opacity-80">target {target}</div>
               </div>
